@@ -1,93 +1,88 @@
 
-# Sacred Sound Platform - Library Documentation
+# Sacred Sound Library Documentation
 
 ## Overview
-The library serves as the central hub for users to discover, organize and play sacred music content. It provides personalized recommendations and seamless integration with the global media player.
+The Library component serves as the central content hub for discovering and playing sacred music content. It features a fixed left navigation, personalized recommendations through swipeable interfaces, and a persistent media player.
 
-## Core Features
-- Personalized content recommendations
-- Global media player integration
-- Content filtering and organization
-- Artist and album browsing
-- Playlist management
+## Core Components
 
-## Component Architecture
+### Left Navigation
+- Fixed sidebar with Sacred Sound logo
+- Global search field at the top
+- Primary navigation sections:
+  - Library (currently selected)
+  - Concert Hall
+  - Feed
+  - My Account
+- Upload button (visible only to artists)
 
-### Main Components
-```typescript
-interface LibraryProps {
-  userId: string;
-  contentType?: 'music' | 'meditation' | 'all';
-}
+### Content Recommendations
+- Multiple SwipeComponent sections displaying personalized content
+- Navigation arrows for horizontal scrolling
+- Each item displays:
+  - Cover artwork
+  - Track name
+  - Artist name
+- Categories include:
+  - New Releases
+  - Featured Content
+  - Sacred Chants
+  - Meditation Content
+  - Sound Healing
 
-interface ContentItem {
-  id: string;
-  title: string;
-  artist: string;
-  type: 'track' | 'album' | 'meditation';
-  duration: number;
-  coverUrl: string;
-  audioUrl: string;
-}
+### Media Player Integration
+- Persistent audio player across views
+- States: Now Playing, Minimized
+- Controls: Play/Pause, Next/Previous, Volume
+- Displays current track and artist information
 
-interface PlaylistData {
-  id: string;
-  name: string;
-  tracks: ContentItem[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-```
-
-### Content Categories
-1. Music Tracks
-   - Studio recordings
-   - Live performances
-   - Sacred chants
-
-2. Meditation Content
-   - Guided meditations
-   - Sound healing
-   - Ambient soundscapes
-
-3. Collections
-   - User-created playlists
-   - Featured compilations
-   - Artist collections
+## Content Types
+- Music Tracks
+  - Studio recordings
+  - Live performances
+  - Sacred chants
+- Meditation Content
+  - Guided meditations
+  - Sound healing
+  - Ambient soundscapes
+- Collections
+  - Albums
+  - Playlists
+  - Artist collections
 
 ## API Integration
 
-### Endpoints
-- `GET /api/getContentByArtist` - Fetch artist content
-- `GET /api/getUserLoves` - Get user favorites
-- `PATCH /api/updateUserLoves` - Update favorites
-- `PATCH /api/updateUserFavorites` - Manage user favorites
-- `POST /api/logContentUsage` - Track content interactions
+### Recombee Endpoints
+```typescript
+GET /api/recommendations/${userId}
+  - Returns personalized content recommendations
+  - Parameters: userId, contentType
+  - Response: Array of content items with metadata
+```
 
-### Content Recommendations
-- Recombee API integration for personalized suggestions
-- User behavior tracking for improved recommendations
-- Content similarity matching
+### Navigation Endpoints
+- `/artist/:artistId` - Artist profile pages
+- `/album/:albumId` - Album detail pages
+- `/track/:trackId` - Individual track pages
 
 ## State Management
 - Global player state
-- Content filtering state
-- Playlist management
+- Current playing track
+- Content recommendations
 - User preferences
 - Search/filter state
 
-## User Interface
+## Responsive Design
 
-### Layout Components
-- Content grid/list views
-- Filter sidebar
-- Search bar
-- Sort controls
-- Playlist manager
+### Desktop (> 1024px)
+- Fixed left sidebar with full navigation
+- Grid layout with 4 items per row
+- Horizontal scrolling sections with navigation arrows
+- Full-width player controls
 
-### Responsive Design
-- Grid layout adapts to screen size
-- Collapsible sidebar on mobile
+### Tablet & Mobile
+- Collapsible sidebar with hamburger menu
+- Adaptive grid layout
 - Touch-friendly controls
 - Optimized media player placement
 
