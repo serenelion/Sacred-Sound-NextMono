@@ -14,59 +14,115 @@
 - [x] Artist Landing Page (/create)
 - [x] Artist Signup Page
 - [ ] Library Page
-- [ ] Upload Page
+- [ ] Upload Page with Album-First Flow
 - [ ] Artist Profile Page
 - [ ] Track Page
-- [ ] Global Media Player
 
 #### Features
 - [x] Email Waitlist
 - [x] Basic Form Validation
 - [x] Artist Account Creation
+- [ ] Album Creation System
 - [ ] Content Upload System
-- [ ] Audio Playback
+- [ ] Global Media Player
 - [ ] Authentication Flow
 
 ### Phase 2 (Next Sprint)
 - [ ] Content Management
-- [ ] Album Creation
 - [ ] Playlist Features
 - [ ] User Recommendations
 - [ ] Search Functionality
 
+## Frontend Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   │   ├── login/
+│   │   │   ├── signup/
+│   │   │   └── logout/
+│   │   ├── albums/
+│   │   │   ├── create/
+│   │   │   ├── [albumId]/
+│   │   │   └── upload/
+│   │   ├── tracks/
+│   │   │   ├── [trackId]/
+│   │   │   └── metadata/
+│   │   └── artists/
+│   │       └── [artistId]/
+│   ├── (auth)/
+│   │   ├── login/
+│   │   ├── signup/
+│   │   └── forgot-password/
+│   ├── library/
+│   ├── upload/
+│   ├── artist/[artistId]/
+│   ├── album/[albumId]/
+│   └── track/[trackId]/
+├── components/
+│   ├── upload/
+│   │   ├── album-creator.tsx
+│   │   ├── track-uploader.tsx
+│   │   └── metadata-form.tsx
+│   ├── player/
+│   │   ├── now-playing.tsx
+│   │   ├── mini-player.tsx
+│   │   └── full-screen.tsx
+│   ├── layout/
+│   │   ├── header.tsx
+│   │   └── sidebar.tsx
+│   └── shared/
+│       ├── buttons.tsx
+│       └── inputs.tsx
+└── lib/
+    ├── api-client.ts
+    └── player-state.ts
+```
+
 ## Component Dependencies
-### Global Media Player
-- Audio playback controls
-- Track queue management
-- Mini player mode
-- Progress bar
-- Volume control
 
-### Upload System
-- File drag & drop
-- Progress tracking
-- Metadata editor
-- Album creation
-- Track reordering
+### Global Media Player States
+1. Now Playing
+   - Full track controls
+   - Queue management
+   - Track info display
+   
+2. Mini Player
+   - Basic controls
+   - Minimized track info
+   - Expand button
+   
+3. Full Screen
+   - Immersive view
+   - Advanced controls
+   - Artwork display
+   - Lyrics (future)
 
-### Artist Profile
-- Bio management
-- Content organization
-- Statistics display
-- Featured tracks
-- Cover image upload
+### Upload Flow
+1. Album Creation (First Step)
+   - Album title
+   - Cover image
+   - Description
+   - Visibility settings
+
+2. Track Upload
+   - File upload UI
+   - Progress tracking
+   - Track reordering
+   
+3. Track Metadata
+   - Basic info
+   - Genre/tags
+   - Credits
 
 ## API Integration Status
-Current endpoints being integrated:
-- `/api/signup` - Artist registration
-- `/api/getCheckAccountName` - Username validation
-- `/api/waitlist` - Waitlist registration
-
-Pending endpoints:
-- `/api/upload` - Content upload
-- `/api/tracks` - Track management
-- `/api/albums` - Album management
-- `/api/artists` - Artist profiles
+Current endpoints:
+- `/api/auth/*` - Authentication
+- `/api/albums/*` - Album management
+- `/api/tracks/*` - Track operations
+- `/api/artists/*` - Artist profiles
 
 ## Known Issues
 1. Network errors during signup attempts
@@ -75,15 +131,13 @@ Pending endpoints:
 4. API integration needs error handling
 
 ## Next Steps
-1. Complete global media player implementation
-2. Add content upload functionality
-3. Implement library page with recommendations
-4. Build artist profile pages
-5. Add track detail pages
-6. Setup proper authentication flow
+1. Implement album-first upload flow
+2. Complete media player states
+3. Build artist profile pages
+4. Setup proper authentication flow
 
 ## Testing Notes
-- Test media player across different browsers
-- Verify upload functionality with various file types
+- Test media player state transitions
+- Verify upload flow completion
 - Check responsive design
 - Validate player state management
