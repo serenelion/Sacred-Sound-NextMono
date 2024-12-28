@@ -62,13 +62,42 @@ GET /api/content/${contentId}
 5. Conditionally renders upload button for artists
 
 ## Responsive Design
-- Breakpoints:
-  - Desktop: > 1024px
-  - Tablet: 768px - 1024px
-  - Mobile: < 768px
-- Adjustable sidebar visibility
-- Responsive player controls
-- Adaptive swipe components
+
+### Breakpoints
+- Desktop: > 1024px
+- Tablet: 768px - 1024px
+- Mobile: < 768px
+
+### Layout Adaptations
+
+#### Desktop (> 1024px)
+- Fixed left sidebar with full navigation
+- Grid layout with 4 items per row for content
+- Full-width player controls
+- Visible section titles and navigation arrows
+- Search bar in sidebar
+
+#### Tablet (768px - 1024px)
+- Grid layout with 2 items per row
+- Collapsible sidebar with hamburger menu
+- Horizontal scrolling for content sections
+- Compact player controls
+- Section navigation arrows at edges
+
+#### Mobile (< 768px)
+- Single column layout
+- Hidden sidebar with hamburger menu toggle
+- Full-width content cards
+- Minimal player interface
+- Vertical scrolling for all content
+- Back button and simplified header
+
+### Components Behavior
+- Sidebar transforms to top navigation on mobile
+- SwipeComponent adapts to screen width
+- Navigation arrows position adjusts per breakpoint
+- Card sizes fluid based on container width
+- Search bar collapses into icon on mobile
 
 ## Dependencies
 - React
