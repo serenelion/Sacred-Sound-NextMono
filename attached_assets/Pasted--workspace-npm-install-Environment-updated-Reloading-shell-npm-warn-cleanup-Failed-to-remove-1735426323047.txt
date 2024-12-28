@@ -1,0 +1,84 @@
+~/workspace$ npm install
+ Environment updated. Reloading shell...
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/es-abstract',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/es-abstract/2015'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/es-abstract/2015'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/es-abstract',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/es-abstract/2015'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/es-abstract/2015'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/typescript',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/typescript'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/typescript'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/typescript',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/typescript'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/typescript'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/lucide-react',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/lucide-react/dist/esm/icons'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/lucide-react/dist/esm/icons'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/next',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/next/dist/server/app-render'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/next/dist/server/app-render'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/next',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/next/dist/server/app-render'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/next/dist/server/app-render'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '/home/runner/workspace/node_modules/lucide-react',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/lucide-react/dist/esm/icons'] {
+npm warn cleanup       errno: -39,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: '/home/runner/workspace/node_modules/lucide-react/dist/esm/icons'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code ENOTEMPTY
+npm error syscall rmdir
+npm error path /home/runner/workspace/node_modules/@swc/helpers/_
+npm error errno -39
+npm error ENOTEMPTY: directory not empty, rmdir '/home/runner/workspace/node_modules/@swc/helpers/_'
+npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2024-12-28T22_51_26_301Z-debug-0.log
+ Environment updated. Reloading shell...
+~/workspace$ 
