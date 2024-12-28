@@ -8,7 +8,6 @@ export async function OPTIONS() {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Credentials': 'true',
     },
   })
 }
@@ -16,12 +15,9 @@ export async function OPTIONS() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
+    const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://0.0.0.0:3000'
     
-    if (!process.env.REACT_APP_API_BASE_URL) {
-      throw new Error('API Base URL not configured')
-    }
-
-    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/signup`, body, {
+    const response = await axios.post(`${apiUrl}/api/signup`, body, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -32,7 +28,6 @@ export async function POST(request: Request) {
       status: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
       }
     })
 
@@ -43,13 +38,7 @@ export async function POST(request: Request) {
         success: false, 
         error: error instanceof Error ? error.message : 'Failed to process signup'
       },
-      { 
-        status: error.response?.status || 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        }
-      }
+      { status: 500 }
     )
   }
 }
