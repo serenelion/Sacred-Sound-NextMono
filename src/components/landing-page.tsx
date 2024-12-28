@@ -20,7 +20,7 @@ export function LandingPage() {
     setIsSubmitting(true)
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || ''
+      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://0.0.0.0:3000'
       const response = await fetch(`${apiUrl}/api/waitlist`, {
         method: 'POST',
         headers: {
@@ -164,7 +164,7 @@ export function LandingPage() {
           <p className="mt-4 text-muted-foreground md:text-lg">
             Be the first to experience Sacred Sound when we launch
           </p>
-          <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-4" suppressHydrationWarning>
             <Input
               type="email"
               placeholder="Enter your email"
