@@ -129,14 +129,12 @@ export function ArtistSignupForm() {
         targetUrl: `${apiUrl}/api/signup`
       })
 
-      const response = await axios.post(`${apiUrl}/api/signup`, requestData, {
+      const response = await axios.post('/api/signup', requestData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        withCredentials: true,
-        timeout: 10000,
-        validateStatus: (status) => status >= 200 && status < 500
+        timeout: 15000
       })
 
       console.log('Signup response:', {
