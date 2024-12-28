@@ -125,19 +125,24 @@ export function ArtistSignupForm() {
 
       console.log('Submitting signup form with data:', {
         ...requestData,
-        password: '[REDACTED]'
+        password: '[REDACTED]',
+        targetUrl: `${apiUrl}/api/signup`
       })
 
       const response = await axios.post(`${apiUrl}/api/signup`, requestData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
-        }
+        },
+        timeout: 10000,
+        validateStatus: (status) => status >= 200 && status < 500
       })
 
       console.log('Signup response:', {
         status: response.status,
-        hasToken: !!response.data.accessToken
+        statusText: response.statusText,
+        hasToken: !!response.data.accessToken,
+        data: response.data
       })
 
       if (!response.data.accessToken) {
@@ -314,4 +319,3 @@ export function ArtistSignupForm() {
     </Card>
   )
 }
-
