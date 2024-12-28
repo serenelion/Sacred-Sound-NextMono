@@ -134,6 +134,7 @@ export function ArtistSignupForm() {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
+        withCredentials: true,
         timeout: 10000,
         validateStatus: (status) => status >= 200 && status < 500
       })

@@ -2,6 +2,17 @@ import { NextResponse } from 'next/server'
 import axios from 'axios'
 
 export async function POST(request: Request) {
+  // Handle preflight requests
+  if (request.method === 'OPTIONS') {
+    return new NextResponse(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    })
+  }
   try {
     const body = await request.json()
     
@@ -61,7 +72,11 @@ export async function POST(request: Request) {
         },
         { 
           status: 200,
-          headers: cookieHeader
+          headers: {
+            ...cookieHeader,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true',
+          }
         }
       )
 
