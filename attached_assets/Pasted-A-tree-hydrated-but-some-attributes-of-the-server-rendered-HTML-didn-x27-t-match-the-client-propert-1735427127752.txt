@@ -1,0 +1,109 @@
+A tree hydrated but some attributes of the server rendered HTML didn&#x27;t match the client properties. This won&#x27;t be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch &#x60;if (typeof window !== &#x27;undefined&#x27;)&#x60;.
+- Variable input such as &#x60;Date.now()&#x60; or &#x60;Math.random()&#x60; which changes each time it&#x27;s called.
+- Date formatting in a user&#x27;s locale which doesn&#x27;t match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ScrollAndFocusHandler segmentPath={[...]}>
+      <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+        <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+          <LoadingBoundary loading={null}>
+            <HTTPAccessFallbackBoundary notFound={[...]} forbidden={undefined} unauthorized={undefined}>
+              <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={undefined} ...>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter parallelRouterKey="children" url="/" tree={[...]} childNodes={Map} ...>
+                      <Home>
+                        <LandingPage>
+                          <div className="flex min-h...">
+                            <section>
+                            <section>
+                            <section>
+                            <section>
+                            <section ref={{current:null}} className="bg-gradien...">
+                              <div className="container ...">
+                                <h2>
+                                <p>
+                                <form
+                                  onSubmit={function handleSubmit}
+                                  className="mt-8 space-y-4"
+-                                 data-dashlane-rid="0a01bc62152e7dee"
+-                                 data-dashlane-classification="newsletter"
+                                >
+                                  <_c>
+                                  <_c type="submit" size="lg" className="w-full" disabled={false}>
+                                    <button
+                                      className="inline-flex items-center justify-center text-sm font-medium transitio..."
+                                      ref={null}
+                                      type="submit"
+                                      disabled={false}
+-                                     data-dashlane-label="true"
+-                                     data-dashlane-rid="38194604569ebe4f"
+-                                     data-dashlane-classification="action"
+                                    >
++                                     Join Waitlist
+                      ...
+
+
+- A server/client branch &amp;#x60;if (typeof window !== &amp;#x27;undefined&amp;#x27;)&amp;#x60;.
+- Variable input such as &amp;#x60;Date.now()&amp;#x60; or &amp;#x60;Math.random()&amp;#x60; which changes each time it&amp;#x27;s called.
+- Date formatting in a user&amp;#x27;s locale which doesn&amp;#x27;t match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+...
+&lt;ScrollAndFocusHandler segmentPath={[...]}&gt;
+&lt;InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}&gt;
+&lt;ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}&gt;
+&lt;LoadingBoundary loading={null}&gt;
+&lt;HTTPAccessFallbackBoundary notFound={[...]} forbidden={undefined} unauthorized={undefined}&gt;
+&lt;HTTPAccessFallbackErrorBoundary pathname=&quot;/&quot; notFound={[...]} forbidden={undefined} ...&gt;
+&lt;RedirectBoundary&gt;
+&lt;RedirectErrorBoundary router={{...}}&gt;
+&lt;InnerLayoutRouter parallelRouterKey=&quot;children&quot; url=&quot;/&quot; tree={[...]} childNodes={Map} ...&gt;
+&lt;Home&gt;
+&lt;LandingPage&gt;
+&lt;div className=&quot;flex min-h...&quot;&gt;
+&lt;section&gt;
+&lt;section&gt;
+&lt;section&gt;
+&lt;section&gt;
+&lt;section ref={{current:null}} className=&quot;bg-gradien...&quot;&gt;
+&lt;div className=&quot;container ...&quot;&gt;
+&lt;h2&gt;
+&lt;p&gt;
+&lt;form
+onSubmit={function handleSubmit}
+className=&quot;mt-8 space-y-4&quot;
+- data-dashlane-rid=&quot;0a01bc62152e7dee&quot;
+- data-dashlane-classification=&quot;newsletter&quot;
+&gt;
+&lt;_c&gt;
+&lt;_c type=&quot;submit&quot; size=&quot;lg&quot; className=&quot;w-full&quot; disabled={false}&gt;
+&lt;button
+className=&quot;inline-flex items-center justify-center text-sm font-medium transitio...&quot;
+ref={null}
+type=&quot;submit&quot;
+disabled={false}
+- data-dashlane-label=&quot;true&quot;
+- data-dashlane-rid=&quot;38194604569ebe4f&quot;
+- data-dashlane-classification=&quot;action&quot;
+&gt;
++ Join Waitlist
+...
+
+at t.value (https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
