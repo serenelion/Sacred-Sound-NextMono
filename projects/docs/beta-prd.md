@@ -58,18 +58,24 @@
 - `POST /api/reset-password` - Password reset
 
 ### Content Management
-- `POST /api/albums/create` - Create new album
-- `PUT /api/albums/[albumId]` - Update album metadata
-- `POST /api/tracks/upload` - Upload track audio
-- `PUT /api/tracks/[trackId]` - Update track metadata
-- `DELETE /api/tracks/[trackId]` - Remove track
+- `POST /api/postNewAlbum` - Create new album
+- `POST /api/updateAlbumMetaData` - Update album metadata
+- `POST /api/addTrackToAlbum` - Upload track to album
+- `POST /api/updatePartialContentMetaData` - Update track metadata
+- `DELETE /api/deleteContent` - Remove track
+- `POST /api/postContentMetaData` - Update content metadata
 
 ### User Data
-- `GET /api/library` - Fetch user's content library
-- `GET /api/artists/[artistId]` - Get artist profile
-- `GET /api/albums/[albumId]` - Get album details
-- `GET /api/tracks/[trackId]` - Get track details
+- `GET /api/getContentByArtist` - Get artist's content
+- `GET /api/getUserProfileById/:userId` - Get artist profile
+- `GET /api/getAlbum/:albumId` - Get album details
+- `GET /api/getTrack/:trackId` - Get track details
+- `GET /api/getUserLoves` - Get user's loved content
+- `PATCH /api/updateUserLoves` - Update user's loved content
+- `PATCH /api/updateUserFavorites` - Update user's favorites
+- `PATCH /api/updateUserSubscription` - Update user subscription
+- `POST /api/logContentUsage` - Log content usage
 
 ### Utilities
-- `POST /api/waitlist` - Add email to waitlist
+- `POST /api/storeEmailOnWaitlist` - Add email to waitlist
 - `GET /api/getCheckAccountName` - Validate username availability
