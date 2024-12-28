@@ -49,7 +49,7 @@ export function ArtistSignupForm() {
       }
 
       try {
-        const response = await axios.get(`${apiUrl}/api/getCheckAccountName`, {
+        const response = await axios.get('/api/getCheckAccountName', {
           params: { accountName, email }
         })
         

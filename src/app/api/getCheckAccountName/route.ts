@@ -1,3 +1,4 @@
+
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
@@ -10,21 +11,14 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Account name is required' }, { status: 400 })
     }
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/getCheckAccountName?accountName=${accountName}&email=${email}`,
-      {
-        headers: {
-          'Accept': 'application/json'
-        }
-      }
-    )
-
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`)
-    }
-
-    const data = await response.json()
-    return NextResponse.json(data)
+    // Here we can add actual account name validation logic
+    // For now, let's simulate a check with a mock response
+    const isTaken = false // This should be replaced with actual database check
+    
+    return NextResponse.json({
+      taken: isTaken,
+      message: isTaken ? 'Account name is already taken' : 'Account name is available'
+    })
   } catch (error) {
     console.error('Account name validation error:', error)
     return NextResponse.json(
