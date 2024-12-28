@@ -53,3 +53,11 @@
 - `.gitignore` - Git ignore rules
 - `postcss.config.mjs` - PostCSS configuration
 - `eslint.config.mjs` - ESLint configuration
+
+## Design Assets (`/attached_assets`)
+- UI mockups and documentation for various pages
+  - Landing page
+  - Artist page
+  - Library
+  - Login/Signup flows
+  - Upload interface
