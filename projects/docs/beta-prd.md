@@ -1,143 +1,75 @@
 
-# Sacred Sound Platform - Beta/Production Documentation
+# Sacred Sound Platform - Documentation
 
-## Environment Details
-- Development: http://0.0.0.0:3000
-- Beta: [Replit Deploy URL]
-- Production: [Replit Deploy URL]
+## Pages
 
-## Core Components Status
+### Public Pages
+- `/` - Landing page with waitlist signup
+- `/create` - Artist landing page with platform overview
+- `/artistSignup` - Artist account creation page
+- `/login` - User authentication page
+- `/forgot-password` - Password reset request page
+- `/reset-password` - Password reset confirmation page
 
-### Phase 1 (Current Priority)
-#### Pages
-- [x] Landing Page with Waitlist
-- [x] Artist Landing Page (/create)
-- [x] Artist Signup Page
-- [ ] Library Page
-- [ ] Upload Page with Album-First Flow
-- [ ] Artist Profile Page
-- [ ] Track Page
+### Authenticated Pages
+- `/library` - User's main content library and recommendations
+- `/upload` - Artist content upload interface with album-first flow
+- `/artist/[artistId]` - Artist profile and content showcase
+- `/album/[albumId]` - Album details and track listing
+- `/track/[trackId]` - Individual track playback and details
+- `/modify/album/[albumId]` - Album metadata editing interface
+- `/modify/track/[trackId]` - Track metadata editing interface
 
-#### Features
-- [x] Email Waitlist
-- [x] Basic Form Validation
-- [x] Artist Account Creation
-- [ ] Album Creation System
-- [ ] Content Upload System
-- [ ] Global Media Player
-- [ ] Authentication Flow
+## Components
 
-### Phase 2 (Next Sprint)
-- [ ] Content Management
-- [ ] Playlist Features
-- [ ] User Recommendations
-- [ ] Search Functionality
+### Authentication
+- `LoginForm` - Email/password authentication
+- `SignupForm` - New artist account creation
+- `PasswordResetForm` - Password recovery flow
 
-## Frontend Structure
+### Media Player
+- `NowPlaying` - Standard playback controls and queue
+- `MiniPlayer` - Collapsed player with basic controls
+- `FullscreenPlayer` - Immersive playback experience
 
-```
-src/
-├── app/
-│   ├── api/
-│   │   ├── auth/
-│   │   │   ├── login/
-│   │   │   ├── signup/
-│   │   │   └── logout/
-│   │   ├── albums/
-│   │   │   ├── create/
-│   │   │   ├── [albumId]/
-│   │   │   └── upload/
-│   │   ├── tracks/
-│   │   │   ├── [trackId]/
-│   │   │   └── metadata/
-│   │   └── artists/
-│   │       └── [artistId]/
-│   ├── (auth)/
-│   │   ├── login/
-│   │   ├── signup/
-│   │   └── forgot-password/
-│   ├── library/
-│   ├── upload/
-│   ├── artist/[artistId]/
-│   ├── album/[albumId]/
-│   └── track/[trackId]/
-├── components/
-│   ├── upload/
-│   │   ├── album-creator.tsx
-│   │   ├── track-uploader.tsx
-│   │   └── metadata-form.tsx
-│   ├── player/
-│   │   ├── now-playing.tsx
-│   │   ├── mini-player.tsx
-│   │   └── full-screen.tsx
-│   ├── layout/
-│   │   ├── header.tsx
-│   │   └── sidebar.tsx
-│   └── shared/
-│       ├── buttons.tsx
-│       └── inputs.tsx
-└── lib/
-    ├── api-client.ts
-    └── player-state.ts
-```
+### Upload System
+- `AlbumCreator` - Album metadata and cover art upload
+- `TrackUploader` - Audio file upload with progress
+- `MetadataForm` - Track information editor
 
-## Component Dependencies
+### Layout
+- `Header` - Navigation and user controls
+- `Sidebar` - Content browsing menu
+- `Footer` - Platform information
 
-### Global Media Player States
-1. Now Playing
-   - Full track controls
-   - Queue management
-   - Track info display
-   
-2. Mini Player
-   - Basic controls
-   - Minimized track info
-   - Expand button
-   
-3. Full Screen
-   - Immersive view
-   - Advanced controls
-   - Artwork display
-   - Lyrics (future)
+### Shared
+- `Button` - Reusable button styles
+- `Input` - Form input components
+- `Card` - Content display container
+- `Alert` - User notifications
+- `Accordion` - Collapsible content sections
 
-### Upload Flow
-1. Album Creation (First Step)
-   - Album title
-   - Cover image
-   - Description
-   - Visibility settings
+## API Endpoints
 
-2. Track Upload
-   - File upload UI
-   - Progress tracking
-   - Track reordering
-   
-3. Track Metadata
-   - Basic info
-   - Genre/tags
-   - Credits
+### Authentication
+- `POST /api/signup` - Create new artist account
+- `POST /api/login` - User authentication
+- `POST /api/logout` - Session termination
+- `POST /api/reset-password` - Password reset
 
-## API Integration Status
-Current endpoints:
-- `/api/auth/*` - Authentication
-- `/api/albums/*` - Album management
-- `/api/tracks/*` - Track operations
-- `/api/artists/*` - Artist profiles
+### Content Management
+- `POST /api/albums/create` - Create new album
+- `PUT /api/albums/[albumId]` - Update album metadata
+- `POST /api/tracks/upload` - Upload track audio
+- `PUT /api/tracks/[trackId]` - Update track metadata
+- `DELETE /api/tracks/[trackId]` - Remove track
 
-## Known Issues
-1. Network errors during signup attempts
-2. React hydration warnings
-3. Form validation improvements needed
-4. API integration needs error handling
+### User Data
+- `GET /api/library` - Fetch user's content library
+- `GET /api/artists/[artistId]` - Get artist profile
+- `GET /api/albums/[albumId]` - Get album details
+- `GET /api/tracks/[trackId]` - Get track details
 
-## Next Steps
-1. Implement album-first upload flow
-2. Complete media player states
-3. Build artist profile pages
-4. Setup proper authentication flow
-
-## Testing Notes
-- Test media player state transitions
-- Verify upload flow completion
-- Check responsive design
-- Validate player state management
+### Utilities
+- `POST /api/waitlist` - Add email to waitlist
+- `GET /api/getCheckAccountName` - Validate username availability
