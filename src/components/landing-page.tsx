@@ -20,7 +20,8 @@ export function LandingPage() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('/api/waitlist', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || ''
+      const response = await fetch(`${apiUrl}/api/waitlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export function LandingPage() {
 
       const data = await response.json()
 
-      if (!data.success) {
+      if (!response.ok) {
         throw new Error(data.error || 'Failed to join waitlist')
       }
 
@@ -170,6 +171,7 @@ export function LandingPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              suppressHydrationWarning
               className="h-12 text-lg"
             />
             <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
