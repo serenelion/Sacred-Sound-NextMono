@@ -1,4 +1,7 @@
 
+import Link from 'next/link'
+
+
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -44,11 +47,13 @@ export function LibraryPage() {
         <section className="mb-8">
           <SwipeComponent title="New Releases">
             {newReleases.map((item) => (
-              <Card key={item.id} className="p-4 min-w-[280px] md:min-w-[320px]">
-                <img src={item.artwork} alt={item.title} className="w-full h-48 object-cover rounded-md" />
-                <h3 className="mt-2 font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-600">{item.artist}</p>
-              </Card>
+              <Link href={`/artist/${item.artist.toLowerCase().replace(/\s+/g, '-')}`} key={item.id}>
+                <Card className="p-4 min-w-[280px] md:min-w-[320px] hover:shadow-lg transition-shadow">
+                  <img src={item.artwork} alt={item.title} className="w-full h-48 object-cover rounded-md" />
+                  <h3 className="mt-2 font-semibold">{item.title}</h3>
+                  <p className="text-sm text-gray-600">{item.artist}</p>
+                </Card>
+              </Link>
             ))}
           </SwipeComponent>
         </section>
