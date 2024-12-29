@@ -195,6 +195,10 @@ export function ArtistSignupForm() {
             } else {
               errorMessage = responseData?.error || 'Invalid signup information'
             }
+            break
+          case 409:
+            errorMessage = 'An account already exists with this email or artist name. Please try logging in instead.'
+            setTimeout(() => router.push('/login'), 2000)
             // Update form-specific errors
             if (responseData?.details) {
               const newErrors: ValidationErrors = {}

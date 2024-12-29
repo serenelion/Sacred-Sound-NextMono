@@ -72,9 +72,18 @@ export async function POST(req: Request) {
     console.error('Signup error:', error)
     const status = (error as any)?.response?.status || 500
     const message = (error as any)?.response?.data?.message || 'Internal server error'
-    return NextResponse.json(
-      { success: false, error: message },
-      { status }
-    )
+    const errorResponse = { 
+      success: false, 
+      error: message,
+      details: error?.response?.data?.details || []
+    }
+    
+    // Special handling for existing account
+    if (error?.response?.status === 409) {
+      errorResponse.error = "An account already exists with this email or artist name"
+      return NextResponse.json(errorResponse, { status: 409 })
+    }
+
+    return NextResponse.json(errorResponse, { status })
   }
 }

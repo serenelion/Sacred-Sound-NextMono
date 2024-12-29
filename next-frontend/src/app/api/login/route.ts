@@ -22,9 +22,19 @@ export async function POST(req: NextRequest) {
       isArtist: response.data.isArtist
     })
   } catch (error: any) {
+    const status = error.response?.status || 500
+    const message = error.response?.data?.message || 'Login failed'
+    
+    let errorMessage = message
+    if (status === 401) {
+      errorMessage = 'Invalid email or password'
+    } else if (status === 404) {
+      errorMessage = 'Account not found. Please sign up first.'
+    }
+    
     return NextResponse.json(
-      { message: error.response?.data?.message || 'Login failed' },
-      { status: 401 }
+      { success: false, message: errorMessage },
+      { status }
     )
   }
 }
