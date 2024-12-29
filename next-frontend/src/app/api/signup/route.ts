@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server'
 import axios from 'axios'
 
@@ -12,9 +11,20 @@ export async function OPTIONS() {
   })
 }
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const body = await request.json()
+    const body = await req.json()
+    const { email, password, accountName, isArtist } = body
+    
+    if (!email || !password || !accountName) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Missing required fields' 
+        }),
+        { status: 400 }
+      )
+    }
     const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://0.0.0.0:3000'
     
     const response = await axios.post(`${apiUrl}/api/signup`, body, {
