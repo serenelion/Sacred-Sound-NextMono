@@ -8,6 +8,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 export function Sidebar() {
+  const { userEmail } = useAuth()
+  const isArtist = userEmail?.endsWith('@artist.sacredsound.com') || false
   return (
     <div className="flex h-full w-[240px] flex-col bg-[#d9d9e7]">
       <div className="flex items-center gap-2 p-4">
