@@ -34,6 +34,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         let email = getUserEmailFromToken(token)
+        const artistFlag = localStorage.getItem('isArtist')
+        setIsArtist(artistFlag === 'true')
         
         if (!email) {
           try {
