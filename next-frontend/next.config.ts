@@ -2,8 +2,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
-  swcMinify: true
+  output: 'standalone'
 };
 
 export default nextConfig;

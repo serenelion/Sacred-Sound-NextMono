@@ -13,10 +13,16 @@ export async function OPTIONS() {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
+    const body = await req.json() as {
+      accountName: string;
+      email: string;
+      password: string;
+      isArtist?: boolean;
+    }
+    
     const { accountName, email, password } = body
     const isArtist = body.isArtist || false
-    
+
     if (!email || !password || !accountName) {
       return new Response(
         JSON.stringify({ 
