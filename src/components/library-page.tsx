@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Card } from './ui/card'
 import { Sidebar } from './sidebar'
 import { MobileNav } from './mobile-nav'
+import { SwipeComponent } from './swipe-component'
 
 interface ContentItem {
   id: string
@@ -40,29 +41,27 @@ export function LibraryPage() {
       
       <main className="flex-1 p-6 pb-24 md:pb-6 overflow-y-auto">
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">New Releases</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <SwipeComponent title="New Releases">
             {newReleases.map((item) => (
-              <Card key={item.id} className="p-4">
+              <Card key={item.id} className="p-4 min-w-[280px] md:min-w-[320px]">
                 <img src={item.artwork} alt={item.title} className="w-full h-48 object-cover rounded-md" />
                 <h3 className="mt-2 font-semibold">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.artist}</p>
               </Card>
             ))}
-          </div>
+          </SwipeComponent>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-4">Featured Content</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <SwipeComponent title="Featured Content">
             {featured.map((item) => (
-              <Card key={item.id} className="p-4">
+              <Card key={item.id} className="p-4 min-w-[280px] md:min-w-[320px]">
                 <img src={item.artwork} alt={item.title} className="w-full h-48 object-cover rounded-md" />
                 <h3 className="mt-2 font-semibold">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.artist}</p>
               </Card>
             ))}
-          </div>
+          </SwipeComponent>
         </section>
       </main>
       
