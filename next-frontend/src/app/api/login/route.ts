@@ -1,6 +1,9 @@
 
 import { NextResponse } from 'next/server';
-import { SignupRequest } from '../signup/route';
+interface LoginRequest {
+  email: string;
+  password: string;
+}
 
 export async function POST(req: Request) {
   try {

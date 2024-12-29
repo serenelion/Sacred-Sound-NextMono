@@ -1,131 +1,45 @@
 
 # Authentication Debugging Guide
 
-## Common Issues & Solutions
+## Current Issues & Solutions
 
-### 1. Firebase Firestore Connection Errors
-```
-@firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream transport errored
-```
-- **Cause**: Connection interruptions between client and Firestore
-- **Solutions**:
-  - Verify Firebase configuration in `firebase.ts`
-  - Check network connectivity
-  - Implement retry logic with exponential backoff
-  - Clear browser cache and cookies
-  - Check Firebase Security Rules
+### 1. Token Refresh Failures
+- **Problem**: Token refresh endpoint not generating new tokens
+- **Solution**: 
+  - Implement proper JWT token generation
+  - Add proper error handling
+  - Fix ESLint warnings
+  - Update login route types
 
-### 2. TypeScript Type Errors
-- **Location**: `route.ts`, `page.tsx` files
+### 2. Type Safety Issues
+- **Location**: `route.ts` files
 - **Issues**:
-  - Unexpected `any` types
+  - Missing type exports
   - Unused variables
-  - Invalid type assertions
+  - Improper any types
 - **Solutions**:
-  - Define proper interfaces for API requests/responses
-  - Use strict TypeScript checks
-  - Add proper type annotations
-  - Remove unused variables
+  - Export required types
+  - Remove unused imports
+  - Add proper type definitions
 
-### 3. API Response Errors
-```
-POST /api/signup 400 (Bad Request)
-```
-- **Cause**: Invalid request data or server validation failure
-- **Debug Steps**:
-  1. Check request payload format
-  2. Verify all required fields are present
-  3. Ensure proper Content-Type headers
-  4. Validate server-side error responses
-  5. Check CORS configuration
-  6. Verify rate limiting settings
+### 3. Authentication Flow
+- **Status**: Login working but token refresh failing
+- **Steps to Fix**:
+  1. Fix token refresh route
+  2. Add proper JWT handling
+  3. Update error handling
+  4. Fix type definitions
 
-### 4. Token Management
-- Monitor JWT token expiration
-- Implement proper refresh token rotation
-- Handle token storage securely
-- Clear tokens on logout
-- Add token validation middleware
+## Required Changes
 
-## Debug Checklist
+1. Update token refresh route
+2. Export types from signup route
+3. Fix ESLint warnings
+4. Add proper JWT secret handling
 
-1. **Client-Side**
-   - [x] Valid Firebase config
-   - [x] Proper token storage
-   - [x] Error handling in auth context
-   - [x] Type safety in forms
-   - [x] Form validation
-   - [x] Loading states
-
-2. **API Routes**
-   - [x] Input validation
-   - [x] Error handling with detailed messages
-   - [x] Type definitions
-   - [x] CORS configuration
-   - [x] Field-specific validation
-   - [x] Rate limiting
-   - [x] Error standardization
-
-3. **Firebase**
-   - [x] Rules configuration
-   - [x] Error retry logic
-   - [x] Connection stability
-   - [x] Error handling improvements
-   - [x] Retry mechanism update
-   - [x] Offline persistence
-   - [x] Connection timeouts
-
-4. **Deployment**
-   - [x] Environment variables
-   - [x] Build optimization
-   - [x] TypeScript compliance
-   - [x] Form validation
-   - [x] Error handling
-   - [x] API route protection
-   - [x] Security headers
-
-## Fixed Issues
-
-1. **Authentication Flow**
-   - [x] Form data collection
-   - [x] TypeScript type safety
-   - [x] API route validation
-   - [x] Error response formatting
-   - [x] Token persistence
-   - [x] Session handling
-
-2. **Security Improvements**
-   - [x] Rate limiting implementation
-   - [x] CORS policy updates
-   - [x] Validation middleware
-   - [x] Error message sanitization
-   - [x] Token encryption
-
-3. **Performance Optimizations**
-   - [x] Reduced bundle size
-   - [x] Optimized API calls
-   - [x] Improved error handling
-   - [x] Better state management
-   - [x] Cached authentication state
-
-## Quick Reference
-
-1. Common HTTP Status Codes:
-   - 400: Bad Request (Invalid input)
-   - 401: Unauthorized (Invalid credentials)
-   - 403: Forbidden (Insufficient permissions)
-   - 429: Too Many Requests (Rate limit exceeded)
-   - 500: Internal Server Error
-
-2. Validation Checks:
-   - Email format
-   - Password strength
-   - Required fields
-   - Token validity
-   - Request payload format
-
-3. Security Headers:
-   - Content-Security-Policy
-   - X-Frame-Options
-   - X-Content-Type-Options
-   - Strict-Transport-Security
+## Testing Checklist
+- [ ] Login flow works
+- [ ] Token refresh generates new token
+- [ ] Error handling works
+- [ ] Types are properly exported
+- [ ] No ESLint warnings
