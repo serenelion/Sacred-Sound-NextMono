@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "npm run dev --workspace=next-frontend",
     "build": "npm run build --workspace=next-frontend",
-    "start": "npm run start --workspace=next-frontend"
+    "start": "npm run start --workspace=next-frontend",
+    "backend:dev": "npm run dev --workspace=backend",
+    "backend:build": "npm run build --workspace=backend",
+    "backend:start": "npm run start --workspace=backend"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.2.0",
