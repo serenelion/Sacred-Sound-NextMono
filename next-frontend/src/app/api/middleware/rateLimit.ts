@@ -8,7 +8,10 @@ const MAX_REQUESTS = 20
 const redis = new Redis(process.env.REDIS_URL || 'redis://127.0.0.1:6379')
 
 export async function rateLimiter(req: NextRequest) {
-  const ip = req.ip ?? '127.0.0.1'
+  const ip = req.headers.get('x-forwarded-for') || 
+             req.headers.get('x-real-ip') || 
+             '127.0.0.1'
+  
   const key = `rate_limit:${ip}`
   
   const requests = await redis.incr(key)
