@@ -102,11 +102,3 @@ const {
   toggleDisplayMode 
 } = usePlayer();
 ```
-
-## Keyboard Shortcuts
-- Space: Play/Pause
-- K: Play/Pause
-- J: Rewind 10s
-- L: Forward 10s
-- M: Mute/Unmute
-- F: Toggle fullscreen

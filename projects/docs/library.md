@@ -36,19 +36,6 @@ The Library component serves as the central content hub for discovering and play
 - Controls: Play/Pause, Next/Previous, Volume
 - Displays current track and artist information
 
-## Content Types
-- Music Tracks
-  - Studio recordings
-  - Live performances
-  - Sacred chants
-- Meditation Content
-  - Guided meditations
-  - Sound healing
-  - Ambient soundscapes
-- Collections
-  - Albums
-  - Playlists
-  - Artist collections
 
 ## API Integration
 
