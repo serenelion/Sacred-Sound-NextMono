@@ -2,7 +2,8 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Library, Mic2, Rss, User } from 'lucide-react'
+import { Library, Mic2, Rss, User, Upload } from 'lucide-react'
+import { useAuth } from '@/contexts/auth-context'
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -46,6 +47,19 @@ export function MobileNav() {
           </Button>
         </Link>
         
+        {/* Upload button only visible to artists */}
+        {isArtist && (
+          <Link href="/upload">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex flex-col items-center gap-1 h-auto py-2 px-3 text-xs text-[#434289]"
+            >
+              <Upload className="h-5 w-5" />
+              Upload
+            </Button>
+          </Link>
+        )}
         <Link href="/account">
           <Button
             variant="ghost"
