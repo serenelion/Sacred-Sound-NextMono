@@ -49,18 +49,16 @@ export function MobileNav() {
         </Link>
         
         {/* Upload button only visible to artists */}
-        {isArtist && (
-          <Link href="/upload">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex flex-col items-center gap-1 h-auto py-2 px-3 text-xs text-[#434289]"
-            >
-              <Upload className="h-5 w-5" />
-              Upload
-            </Button>
-          </Link>
-        )}
+        <Link href="/upload">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex flex-col items-center gap-1 h-auto py-2 px-3 text-xs text-[#434289]"
+          >
+            <Upload className="h-5 w-5" />
+            Upload
+          </Button>
+        </Link>
         <Link href="/account">
           <Button
             variant="ghost"
