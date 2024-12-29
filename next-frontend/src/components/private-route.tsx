@@ -1,6 +1,4 @@
 
-'use client'
-
 import { useAuth } from '@/contexts/auth-context'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -11,16 +9,16 @@ interface PrivateRouteProps {
 }
 
 export function PrivateRoute({ children, requireArtist = false }: PrivateRouteProps) {
-  const { userEmail, loading, isArtist } = useAuth()
+  const { userEmail, isArtist, loading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
     if (!loading && !userEmail) {
-      router.push(`/login?redirect=${window.location.pathname}`)
+      router.push('/login')
     } else if (!loading && requireArtist && !isArtist) {
       router.push('/library')
     }
-  }, [userEmail, loading, requireArtist, isArtist, router])
+  }, [userEmail, isArtist, loading, requireArtist, router])
 
   if (loading) {
     return <div>Loading...</div>
