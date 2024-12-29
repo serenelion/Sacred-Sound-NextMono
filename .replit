@@ -1,20 +1,11 @@
 
-run = "cd next-frontend && npm run dev"
-modules = ["nodejs-20:v8-20230920-bd784b9"]
+run = "npm run dev"
+hidden = [".build", ".config"]
 
 [nix]
-channel = "stable-24_05"
+channel = "stable-23_05"
 
 [deployment]
-build = ["sh", "-c", "cd next-frontend && npm run build"]
-run = ["sh", "-c", "cd next-frontend && npm start"]
+run = "npm run start"
+build = ["npm", "run", "build"]
 deploymentTarget = "cloudrun"
-
-[[ports]]
-localPort = 3000
-externalPort = 80
-
-[env]
-NEXT_TELEMETRY_DISABLED = "1"
-PORT = "3000"
-HOST = "0.0.0.0"
