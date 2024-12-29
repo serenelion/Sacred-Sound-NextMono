@@ -41,6 +41,7 @@ yarn-error.log*
 next-env.d.ts
 # Dependencies
 node_modules/
+old-frontend/node_modules/
 .pnp/
 .pnp.js
 
