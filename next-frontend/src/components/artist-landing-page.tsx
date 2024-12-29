@@ -14,7 +14,7 @@ import { BadgeCheck, Flame, Globe, Heart, Music2, Users } from 'lucide-react'
 const faqs = [
   {
     question: 'What kind of artists can join Sacred Sound?',
-    answer: 'Sacred Sound welcomes artists creating transformative, conscious, and spiritual music across all traditions and genres. Whether you create mantras, medicine music, sound healing, or any form of sacred music, you\'re welcome here.'
+    answer: 'Sacred Sound welcomes artists creating transformative, conscious, and spiritual music across all traditions and genres. Whether you create mantras, medicine music, sound healing, or any form of sacred music, you&apos;re welcome here.'
   },
   {
     question: 'How do I get started?',

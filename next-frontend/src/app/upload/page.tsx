@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label'
 import { useRouter } from 'next/navigation'
 
 export default function UploadPage() {
-  const router = useRouter()
   const [step, setStep] = useState<'album'|'tracks'>('album')
   const [albumData, setAlbumData] = useState({
     title: '',

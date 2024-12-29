@@ -5,7 +5,6 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const accountName = searchParams.get('accountName')
-    const email = searchParams.get('email')
 
     if (!accountName) {
       return NextResponse.json({ error: 'Account name is required' }, { status: 400 })
