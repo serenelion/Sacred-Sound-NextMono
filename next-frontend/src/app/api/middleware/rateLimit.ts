@@ -1,34 +1,28 @@
 
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import Redis from 'ioredis'
 
-const rateLimit = new Map()
+const WINDOW_SIZE = 60 // 1 minute
+const MAX_REQUESTS = 20
 
-export function rateLimiter(req: NextRequest) {
+const redis = new Redis(process.env.REDIS_URL || 'redis://127.0.0.1:6379')
+
+export async function rateLimiter(req: NextRequest) {
   const ip = req.ip ?? '127.0.0.1'
-  const now = Date.now()
-  const timeFrame = 60 * 1000 // 1 minute
-  const maxAttempts = 10
-
-  const userRate = rateLimit.get(ip) ?? {
-    timestamp: now,
-    attempts: 0
+  const key = `rate_limit:${ip}`
+  
+  const requests = await redis.incr(key)
+  
+  if (requests === 1) {
+    await redis.expire(key, WINDOW_SIZE)
   }
-
-  if (now - userRate.timestamp > timeFrame) {
-    userRate.timestamp = now
-    userRate.attempts = 0
-  }
-
-  if (userRate.attempts >= maxAttempts) {
+  
+  if (requests > MAX_REQUESTS) {
     return new NextResponse(
       JSON.stringify({ error: 'Too many requests' }),
       { status: 429 }
     )
   }
-
-  userRate.attempts++
-  rateLimit.set(ip, userRate)
   
   return null
 }
