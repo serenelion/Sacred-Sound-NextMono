@@ -1,6 +1,13 @@
 
+'use client'
+
 import { LibraryPage } from '@/components/library-page'
+import { PrivateRoute } from '@/components/private-route'
 
 export default function Library() {
-  return <LibraryPage />
+  return (
+    <PrivateRoute>
+      <LibraryPage />
+    </PrivateRoute>
+  )
 }
