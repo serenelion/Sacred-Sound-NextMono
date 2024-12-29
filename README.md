@@ -1,49 +1,38 @@
 
-# Sacred Sound Platform
+# Sacred Sound Platform Monorepo
 
-A Next.js-based web application for artists to share and manage their music content.
-
-## Project Overview
-
-Sacred Sound Platform is a music platform that enables artists to upload, manage, and share their music content with listeners.
-
-## Tech Stack
-
-- **Frontend**: Next.js 15.1.3
-- **UI Framework**: React 19.0.0
-- **Styling**: Tailwind CSS
-- **TypeScript**: For type safety
-- **Authentication**: JWT-based
+A comprehensive monorepo containing all Sacred Sound Platform components and documentation.
 
 ## Project Structure
 
 ```
-├── src/
-│   ├── app/                 # Next.js app directory
-│   │   ├── api/            # API route handlers
-│   │   ├── artistSignup/   # Artist signup page
-│   │   └── create/         # Artist landing page
-│   ├── components/         # React components
-│   │   ├── ui/            # Reusable UI components
-│   │   └── ...            # Feature components
-│   ├── contexts/          # React contexts
-│   └── lib/               # Utility functions
+├── next-frontend/     # Next.js frontend application
+├── old-frontend/      # Original React frontend
+├── backend/          # Node.js backend services
+├── guides/           # Documentation and guides
+└── plans/           # Project planning and roadmap
 ```
+
+## Tech Stack
+
+- **Next Frontend**: Next.js 15.1.3, React 19.0.0
+- **Backend**: Node.js
+- **Services**:
+  - Authentication
+  - Recombee Recommendations
+  - Firebase Storage
+  - Mux Video
+  - Tilo Payments
+  - Sentry Monitoring
+  - Retool Admin
 
 ## Features
 
 - Artist registration and authentication
-- Content upload system
-- Music library management
-- Waitlist system for early access
-- Artist profile pages
-
-## API Endpoints
-
-- `/api/signup` - User registration
-- `/api/waitlist` - Waitlist management
-- `/api/getCheckAccountName` - Username validation
-- `/api/postNewUserWithAccountName` - User creation
+- Content upload and management
+- Music library and player
+- Recommendation system
+- Payment processing
 
 ## Getting Started
 
@@ -59,39 +48,11 @@ npm run dev
 
 3. Open [http://0.0.0.0:3000](http://0.0.0.0:3000)
 
-## Available Scripts
+## Documentation
 
-- `npm run dev` - Start development server
-- `npm run build` - Build production bundle
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-
-## Components
-
-### UI Components
-- `Button` - Reusable button component
-- `Input` - Form input component
-- `Card` - Content container
-- `Alert` - Notification component
-- `Accordion` - Collapsible sections
-
-### Feature Components
-- `ArtistLandingPage` - Main artist page
-- `ArtistSignupForm` - Registration form
-- `LandingPage` - Main landing page
-
-## Authentication
-
-The platform uses JWT-based authentication with tokens stored in the auth context. Protected routes require valid authentication tokens.
-
-## Configuration
-
-The project uses various configuration files:
-- `next.config.ts` - Next.js configuration
-- `tailwind.config.ts` - Tailwind CSS settings
-- `tsconfig.json` - TypeScript configuration
-- `.replit` - Replit-specific settings
-
-## License
-
-See the LICENSE file for details.
+See the `/guides` directory for detailed documentation on:
+- Authentication
+- Media Player
+- Upload Process
+- Beta Launch
+- MVBP (Minimum Viable Beta Product)
