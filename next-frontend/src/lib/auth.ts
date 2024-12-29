@@ -25,7 +25,7 @@ export const getUserEmailFromToken = (token: string): string | null => {
 
 export const refreshAccessToken = async (): Promise<string> => {
   try {
-    const response = await axios.post('/api/refreshToken', {}, {
+    const response = await axios.post('/api/auth/refresh', {}, {
       withCredentials: true
     })
     return response.data.token
