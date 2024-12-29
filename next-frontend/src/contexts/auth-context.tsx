@@ -54,6 +54,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUserEmail(email)
       } catch (error) {
         console.error('Auth initialization error:', error)
+        // Clear auth state on Firebase error
+        localStorage.removeItem('token')
+        localStorage.removeItem('isArtist')
+        setUserEmail(null)
+        setIsArtist(false)
       } finally {
         setLoading(false)
       }

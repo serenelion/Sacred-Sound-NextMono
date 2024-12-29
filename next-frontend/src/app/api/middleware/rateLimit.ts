@@ -4,20 +4,31 @@ import type { NextRequest } from 'next/server'
 
 const rateLimit = new Map()
 
-export function rateLimiter(request: NextRequest) {
-  const ip = request.ip || '127.0.0.1'
+export function rateLimiter(req: NextRequest) {
+  const ip = req.ip ?? '127.0.0.1'
   const now = Date.now()
-  const windowStart = now - 60000 // 1 minute window
-  
-  const requestCount = rateLimit.get(ip) || []
-  const requestsInWindow = requestCount.filter(time => time > windowStart)
-  
-  if (requestsInWindow.length >= 10) { // Max 10 requests per minute
-    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  const timeFrame = 60 * 1000 // 1 minute
+  const maxAttempts = 10
+
+  const userRate = rateLimit.get(ip) ?? {
+    timestamp: now,
+    attempts: 0
   }
+
+  if (now - userRate.timestamp > timeFrame) {
+    userRate.timestamp = now
+    userRate.attempts = 0
+  }
+
+  if (userRate.attempts >= maxAttempts) {
+    return new NextResponse(
+      JSON.stringify({ error: 'Too many requests' }),
+      { status: 429 }
+    )
+  }
+
+  userRate.attempts++
+  rateLimit.set(ip, userRate)
   
-  requestsInWindow.push(now)
-  rateLimit.set(ip, requestsInWindow)
-  
-  return NextResponse.next()
+  return null
 }
