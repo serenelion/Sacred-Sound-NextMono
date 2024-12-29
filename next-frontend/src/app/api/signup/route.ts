@@ -11,9 +11,16 @@ export async function OPTIONS() {
   })
 }
 
+interface SignupRequest {
+  accountName: string;
+  email: string;
+  password: string;
+  isArtist?: boolean;
+}
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as {
+    const body = await req.json() as SignupRequest as {
       accountName: string;
       email: string;
       password: string;

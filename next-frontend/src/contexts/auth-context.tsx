@@ -22,8 +22,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    const initializeAuth = async () => {
+    const initializeAuth = async (retryCount = 0) => {
       try {
+        const MAX_RETRIES = 3;
+        const RETRY_DELAY = 1000;
+
         const token = localStorage.getItem('token')
         if (!token) {
           setLoading(false)
@@ -54,6 +57,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUserEmail(email)
       } catch (error) {
         console.error('Auth initialization error:', error)
+        
+        if (retryCount < MAX_RETRIES && error?.message?.includes('WebChannelConnection')) {
+          console.log(`Retrying auth initialization (${retryCount + 1}/${MAX_RETRIES})`)
+          await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retryCount + 1)))
+          return initializeAuth(retryCount + 1)
+        }
+        
         // Clear auth state on Firebase error
         localStorage.removeItem('token')
         localStorage.removeItem('isArtist')
