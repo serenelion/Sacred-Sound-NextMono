@@ -28,12 +28,9 @@ export default function LoginPage() {
         password
       })
       
-      login(response.data.token, response.data.isArtist)
-      // Ensure redirect happens after login state is updated
-      setTimeout(() => {
-        router.push(redirect)
-        router.refresh()
-      }, 100)
+      await login(response.data.token, response.data.isArtist)
+      router.push(redirect)
+      router.refresh()
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed')
     }

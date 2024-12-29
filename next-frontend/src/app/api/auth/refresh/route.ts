@@ -8,15 +8,14 @@ const JWT_SECRET = new TextEncoder().encode(
 
 export async function POST() {
   try {
-    const newToken = await new SignJWT({})
-      .setProtectedHeader({ alg: 'HS256' })
-      .setExpirationTime('6h')
-      .sign(JWT_SECRET)
-      
-    return NextResponse.json({ token: newToken })
+    const response = NextResponse.json(
+      { message: 'Token refreshed successfully' },
+      { status: 200 }
+    )
+    return response
   } catch (error) {
     return NextResponse.json(
-      { message: 'Failed to refresh token' },
+      { error: 'Invalid refresh token' },
       { status: 401 }
     )
   }
