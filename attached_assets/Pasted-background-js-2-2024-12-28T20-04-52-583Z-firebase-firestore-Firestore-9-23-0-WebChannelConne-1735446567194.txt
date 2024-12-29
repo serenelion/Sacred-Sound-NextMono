@@ -1,0 +1,491 @@
+background.js:2 [2024-12-28T20:04:52.583Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96423 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-28T20:20:41.908Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96424 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-28T20:31:25.866Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96425 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T00:51:25.519Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9642b transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T00:56:05.015Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9642c transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:00:18.311Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9642d transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:00:18.327Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9642e transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:00:19.159Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9642f transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:00:20.904Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96430 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:00:23.851Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96431 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:05:52.893Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96432 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:05:56.843Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96433 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+Tn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:25:06.328Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96434 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T01:27:35.612Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96435 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T02:05:46.006Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96437 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T02:23:27.388Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96438 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T02:38:49.636Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b96439 transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+background.js:2 [2024-12-29T02:56:40.706Z]  @firebase/firestore: Firestore (9.23.0): WebChannelConnection RPC 'Listen' stream 0x46b9643a transport errored: cr
+(anonymous) @ background.js:2
+l @ background.js:2
+(anonymous) @ background.js:2
+m @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+(anonymous) @ background.js:2
+er @ background.js:2
+Xn @ background.js:2
+xt @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Me @ background.js:2
+ke @ background.js:2
+xn @ background.js:2
+(anonymous) @ background.js:2
+(anonymous) @ background.js:2
+Sn @ background.js:2
+(anonymous) @ background.js:2Understand this warningAI
+library:1 
+        
+        
+       GET https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/library 500 (Internal Server Error)Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+medata.js:42 ui_locale: en-US
+index.js:633 Uncaught Error: Module not found: Can't resolve 'jose'
+  1 |
+  2 | import { NextResponse } from 'next/server'
+> 3 | import { jwtVerify, SignJWT } from 'jose'
+    | ^
+  4 |
+  5 | const JWT_SECRET = new TextEncoder().encode(
+  6 |   process.env.JWT_SECRET || 'your-secret-key'
+
+https://nextjs.org/docs/messages/module-not-found
+
+    at <unknown> (nextjs.org/docs/messages/module-not-found)
+    at getNotFoundError (/home/runner/workspace/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/parseNotFoundError.js:134:16)
+    at async getModuleBuildError (/home/runner/workspace/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/webpackModuleError.js:104:27)
+    at async (/home/runner/workspace/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:29:49)
+    at async (/home/runner/workspace/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:27:21)
+getServerError @ node-stack-frames.js:45
+eval @ index.js:633
+setTimeout
+hydrate @ index.js:615
+await in hydrate
+pageBootstrap @ page-bootstrap.js:27
+eval @ next-dev.js:24
+Promise.then
+eval @ next-dev.js:22
+../node_modules/next/dist/client/next-dev.js @ main.js:919
+options.factory @ webpack.js:644
+__webpack_require__ @ webpack.js:37
+__webpack_exec__ @ main.js:2096
+(anonymous) @ main.js:2097
+webpackJsonpCallback @ webpack.js:1187
+(anonymous) @ main.js:9Understand this errorAI
+content.js:43 ui_locale: en-US
+textVoice.js:61 ui_locale: en-US
+VM1305:1 Uncaught (in promise) SyntaxError: "undefined" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at ht.updateConfig (content.js:43:74460)
+    at ht.initConfig (content.js:43:74571)
+updateConfig @ content.js:43
+initConfig @ content.js:43
+await in initConfig
+main @ content.js:157
+(anonymous) @ content.js:157
+(anonymous) @ content.js:157
+(anonymous) @ content.js:157Understand this errorAI
+iframe.js:2 ui_locale: en-US
+iframe.js:155 Injected into top window
+VM1306:1 Uncaught (in promise) SyntaxError: "undefined" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at Ke.updateConfig (textVoice.js:61:88607)
+    at Ke.initConfig (textVoice.js:61:88718)
+    at async main (textVoice.js:177:2910)
+    at async textVoice.js:177:3381
+updateConfig @ textVoice.js:61
+initConfig @ textVoice.js:61
+await in initConfig
+main @ textVoice.js:177
+(anonymous) @ textVoice.js:177
+(anonymous) @ textVoice.js:177
+(anonymous) @ textVoice.js:177Understand this errorAI
+favicon.ico:1 
+        
+        
+       GET https://ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev/favicon.ico 500 (Internal Server Error)Understand this errorAI
+websocket.js:42 [HMR] connected
+hook.js:608 ./src/app/api/auth/refresh/route.ts:3:1
+Module not found: Can't resolve 'jose'
+  1 |
+  2 | import { NextResponse } from 'next/server'
+> 3 | import { jwtVerify, SignJWT } from 'jose'
+    | ^
+  4 |
+  5 | const JWT_SECRET = new TextEncoder().encode(
+  6 |   process.env.JWT_SECRET || 'your-secret-key'
+
+https://nextjs.org/docs/messages/module-not-found
+overrideMethod @ hook.js:608
+nextJsHandleConsoleError @ client.js:85
+handleErrors @ hot-reloader-client.js:162
+processMessage @ hot-reloader-client.js:239
+eval @ hot-reloader-client.js:67
+handleMessage @ websocket.js:65Understand this errorAI
