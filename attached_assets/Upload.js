@@ -29,6 +29,14 @@ const Upload = ({
     updateFileProgress,   
 }) => {
 
+    // Add state for initial album creation
+    const [isCreatingAlbum, setIsCreatingAlbum] = useState(false);
+    const [initialAlbumData, setInitialAlbumData] = useState({
+        title: '',
+        description: '',
+        visibility: 'public'
+    });
+
     const { userEmail } = useAuth(); // Use the custom hook to get the user's email
 
     // Upload tracking:
@@ -345,9 +353,81 @@ const Upload = ({
         .catch((error) => console.error('Error posting metadata:', error));
     };
 
+    const handleInitialAlbumCreate = () => {
+        onAlbumDataChange("albumTitle", initialAlbumData.title);
+        onAlbumDataChange("description", initialAlbumData.description);
+        onAlbumDataChange("visibility", initialAlbumData.visibility);
+        postNewAlbum(albumId);
+        setIsCreatingAlbum(false);
+        onStateChange("initial");
+    };
+
     return (
         <>
-        {viewState === "initial" && (
+        {viewState === "initial" && !isCreatingAlbum && (
+            <div style={{ textAlign: 'center', marginTop: '5vh' }}>
+                <button onClick={() => setIsCreatingAlbum(true)} 
+                        style={{ 
+                            padding: '15px 30px',
+                            backgroundColor: '#434289',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '33px',
+                            marginBottom: '20px',
+                            cursor: 'pointer'
+                        }}>
+                    Create New Album
+                </button>
+            </div>
+        )}
+        
+        {isCreatingAlbum && (
+            <AlbumCreationView>
+                <AlbumDetails>
+                    <h1 style={{ marginTop: '5vh', marginBottom: '3vh' }}>Create New Album</h1>
+                    <label htmlFor="albumTitle">Title</label>
+                    <input
+                        style={{ marginBottom: '3vh', padding: '22px' }}
+                        id="albumTitle"
+                        type="text"
+                        value={initialAlbumData.title}
+                        onChange={(e) => setInitialAlbumData({...initialAlbumData, title: e.target.value})}
+                    />
+                    <label htmlFor="albumDescription">Description</label>
+                    <textarea
+                        style={{ marginBottom: '3vh', height: '9vh', padding: '22px' }}
+                        id="albumDescription"
+                        value={initialAlbumData.description}
+                        onChange={(e) => setInitialAlbumData({...initialAlbumData, description: e.target.value})}
+                    />
+                    <label htmlFor="visibility">Visibility</label>
+                    <select 
+                        id="visibility" 
+                        value={initialAlbumData.visibility}
+                        onChange={(e) => setInitialAlbumData({...initialAlbumData, visibility: e.target.value})}
+                    >
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <button 
+                        onClick={handleInitialAlbumCreate}
+                        style={{ 
+                            marginTop: '20px',
+                            padding: '15px 30px',
+                            backgroundColor: '#434289',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '33px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Create Album
+                    </button>
+                </AlbumDetails>
+            </AlbumCreationView>
+        )}
+
+        {viewState === "initial" && !isCreatingAlbum && (
             <DropZone onDragOver={handleDragOver} onDrop={handleDrop}>
                 <h1 style={{ marginTop: '5vh' }}>Drop your music here: single tracks or whole albums.</h1>
                 <UploadStyledLabel>
