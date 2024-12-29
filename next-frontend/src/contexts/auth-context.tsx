@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error('Auth initialization error:', error)
         
-        if (retryCount < MAX_RETRIES && error?.message?.includes('WebChannelConnection')) {
+        if (retryCount < MAX_RETRIES) {
           console.log(`Retrying auth initialization (${retryCount + 1}/${MAX_RETRIES})`)
           await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retryCount + 1)))
           return initializeAuth(retryCount + 1)
