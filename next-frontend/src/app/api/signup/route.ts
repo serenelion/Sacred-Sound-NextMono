@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     const errorResponse = { 
       success: false, 
       error: message,
-      details: error?.response?.data?.details || []
+      details: (error as any)?.response?.data?.details || []
     }
     
     // Special handling for existing account
