@@ -27,6 +27,13 @@ interface ValidationErrors {
   confirmPassword?: string
 }
 
+interface SignupFormData {
+  accountName: string;
+  email: string;
+  password: string;
+  isArtist: boolean;
+}
+
 export function ArtistSignupForm() {
   const router = useRouter()
   const { login } = useAuth()
@@ -116,20 +123,21 @@ export function ArtistSignupForm() {
         throw new Error('API Base URL is not defined')
       }
 
-      const requestData = {
-        accountName: formData.accountName,
-        email: formData.email,
-        password: formData.password,
+      const formData = new FormData(e.target as HTMLFormElement);
+      const data: SignupFormData = {
+        accountName: formData.get('accountName') as string,
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
         isArtist: true
       }
 
       console.log('Submitting signup form with data:', {
-        ...requestData,
+        ...data,
         password: '[REDACTED]',
         targetUrl: `${apiUrl}/api/signup`
       })
 
-      const response = await axios.post('/api/signup', requestData, {
+      const response = await axios.post('/api/signup', data, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
