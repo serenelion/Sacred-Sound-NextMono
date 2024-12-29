@@ -27,6 +27,7 @@
 - [x] React Context Setup
   - [x] AuthProvider implementation
   - [x] useAuth hook
+  - [x] isArtist state sharing
   - [ ] Persistent auth state
 - [ ] Route Protection
   - [ ] Authenicated routes
