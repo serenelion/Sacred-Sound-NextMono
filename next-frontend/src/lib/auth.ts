@@ -1,9 +1,11 @@
+
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 
 interface DecodedToken {
   email: string
   exp: number
+  isArtist?: boolean
 }
 
 export const getUserEmailFromToken = (token: string): string | null => {
@@ -23,16 +25,17 @@ export const getUserEmailFromToken = (token: string): string | null => {
 
 export const refreshAccessToken = async (): Promise<string> => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/refresh`, {}, {
+    const response = await axios.post('/api/refreshToken', {}, {
       withCredentials: true
     })
     return response.data.token
   } catch (error) {
+    console.error('Token refresh failed:', error)
     throw new Error('Failed to refresh token')
   }
 }
 
-// Set up axios interceptors
+// Axios interceptors for automatic token handling
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -41,9 +44,7 @@ axios.interceptors.request.use(
     }
     return config
   },
-  (error) => {
-    return Promise.reject(error)
-  }
+  (error) => Promise.reject(error)
 )
 
 axios.interceptors.response.use(
@@ -61,6 +62,7 @@ axios.interceptors.response.use(
         return axios(originalRequest)
       } catch (refreshError) {
         localStorage.removeItem('token')
+        localStorage.removeItem('isArtist')
         window.location.href = '/login'
         return Promise.reject(refreshError)
       }
@@ -70,3 +72,7 @@ axios.interceptors.response.use(
   }
 )
 
+export const isAuthenticated = (): boolean => {
+  const token = localStorage.getItem('token')
+  return !!token && !!getUserEmailFromToken(token)
+}

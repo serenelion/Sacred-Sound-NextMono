@@ -1,13 +1,15 @@
+
 'use client'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { getUserEmailFromToken, refreshAccessToken } from '@/lib/auth'
+import { useRouter } from 'next/navigation'
 
 interface AuthContextType {
   userEmail: string | null
   isArtist: boolean
   loading: boolean
-  login: (token: string) => void
+  login: (token: string, isArtist?: boolean) => void
   logout: () => void
 }
 
@@ -17,6 +19,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userEmail, setUserEmail] = useState<string | null>(null)
   const [isArtist, setIsArtist] = useState(false)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -30,13 +33,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         let email = getUserEmailFromToken(token)
         
         if (!email) {
-          // Token is invalid or expired, try to refresh
           try {
             const newToken = await refreshAccessToken()
-            localStorage.setItem('token', newToken)
-            email = getUserEmailFromToken(newToken)
-          } catch {
+            if (newToken) {
+              localStorage.setItem('token', newToken)
+              email = getUserEmailFromToken(newToken)
+              const artistFlag = localStorage.getItem('isArtist')
+              setIsArtist(artistFlag === 'true')
+            } else {
+              throw new Error('Token refresh failed')
+            }
+          } catch (error) {
+            console.error('Token refresh failed:', error)
             localStorage.removeItem('token')
+            localStorage.removeItem('isArtist')
+            router.push('/login')
           }
         }
 
@@ -49,17 +60,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     initializeAuth()
-  }, [])
 
-  const login = (token: string) => {
+    const tokenCheckInterval = setInterval(() => {
+      const token = localStorage.getItem('token')
+      if (token && !getUserEmailFromToken(token)) {
+        initializeAuth()
+      }
+    }, 5 * 60 * 1000) // Check every 5 minutes
+
+    return () => clearInterval(tokenCheckInterval)
+  }, [router])
+
+  const login = (token: string, artistFlag?: boolean) => {
     localStorage.setItem('token', token)
+    if (artistFlag !== undefined) {
+      localStorage.setItem('isArtist', String(artistFlag))
+      setIsArtist(artistFlag)
+    }
     const email = getUserEmailFromToken(token)
     setUserEmail(email)
   }
 
   const logout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('isArtist')
     setUserEmail(null)
+    setIsArtist(false)
+    router.push('/login')
   }
 
   return (
@@ -76,4 +103,3 @@ export function useAuth() {
   }
   return context
 }
-
