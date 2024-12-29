@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Sacred Sound Platform
+
+A Next.js-based web application for artists to share and manage their music content.
+
+## Project Overview
+
+Sacred Sound Platform is a music platform that enables artists to upload, manage, and share their music content with listeners.
+
+## Tech Stack
+
+- **Frontend**: Next.js 15.1.3
+- **UI Framework**: React 19.0.0
+- **Styling**: Tailwind CSS
+- **TypeScript**: For type safety
+- **Authentication**: JWT-based
+
+## Project Structure
+
+```
+├── src/
+│   ├── app/                 # Next.js app directory
+│   │   ├── api/            # API route handlers
+│   │   ├── artistSignup/   # Artist signup page
+│   │   └── create/         # Artist landing page
+│   ├── components/         # React components
+│   │   ├── ui/            # Reusable UI components
+│   │   └── ...            # Feature components
+│   ├── contexts/          # React contexts
+│   └── lib/               # Utility functions
+```
+
+## Features
+
+- Artist registration and authentication
+- Content upload system
+- Music library management
+- Waitlist system for early access
+- Artist profile pages
+
+## API Endpoints
+
+- `/api/signup` - User registration
+- `/api/waitlist` - Waitlist management
+- `/api/getCheckAccountName` - Username validation
+- `/api/postNewUserWithAccountName` - User creation
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://0.0.0.0:3000](http://0.0.0.0:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+- `npm run dev` - Start development server
+- `npm run build` - Build production bundle
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-To learn more about Next.js, take a look at the following resources:
+## Components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### UI Components
+- `Button` - Reusable button component
+- `Input` - Form input component
+- `Card` - Content container
+- `Alert` - Notification component
+- `Accordion` - Collapsible sections
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Feature Components
+- `ArtistLandingPage` - Main artist page
+- `ArtistSignupForm` - Registration form
+- `LandingPage` - Main landing page
 
-## Deploy on Vercel
+## Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The platform uses JWT-based authentication with tokens stored in the auth context. Protected routes require valid authentication tokens.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Configuration
+
+The project uses various configuration files:
+- `next.config.ts` - Next.js configuration
+- `tailwind.config.ts` - Tailwind CSS settings
+- `tsconfig.json` - TypeScript configuration
+- `.replit` - Replit-specific settings
+
+## License
+
+See the LICENSE file for details.
