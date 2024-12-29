@@ -70,7 +70,7 @@ export async function POST(req: Request) {
 
   } catch (error) {
     console.error('Signup error:', error)
-    const axiosError = error as import('axios').AxiosError
+    const axiosError = error as import('axios').AxiosError<{ message?: string; details?: string[] }>
     const status = axiosError.response?.status || 500
     const message = axiosError.response?.data?.message || 'Internal server error'
     const errorResponse = { 
