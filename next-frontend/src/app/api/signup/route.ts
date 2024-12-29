@@ -30,13 +30,26 @@ export async function POST(req: Request) {
     const { accountName, email, password } = body
     const isArtist = body.isArtist || false
 
-    if (!email || !password || !accountName) {
+    // Validate required fields
+    const errors = [];
+    if (!email) errors.push('Email is required');
+    if (!password) errors.push('Password is required');
+    if (!accountName) errors.push('Account name is required');
+    
+    if (errors.length > 0) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Missing required fields' 
+          error: 'Validation failed',
+          details: errors
         }),
-        { status: 400 }
+        { 
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
       )
     }
     const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://0.0.0.0:3000'

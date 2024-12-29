@@ -179,27 +179,41 @@ export function ArtistSignupForm() {
       let errorMessage: string
       
       if (axios.isAxiosError(error)) {
-        // Handle specific error status codes
+        const responseData = error.response?.data
+          
         console.error('Detailed signup error:', {
           status: error.response?.status,
           statusText: error.response?.statusText,
-          data: error.response?.data,
-          message: error.message,
-          requestData: {
-            ...error.config?.data,
-            password: '[REDACTED]'
-          }
+          data: responseData,
+          message: error.message
         })
 
         switch (error.response?.status) {
           case 400:
-            errorMessage = error.response.data.message || 'Invalid signup information'
+            if (responseData?.details && Array.isArray(responseData.details)) {
+              errorMessage = responseData.details.join(', ')
+            } else {
+              errorMessage = responseData?.error || 'Invalid signup information'
+            }
+            // Update form-specific errors
+            if (responseData?.details) {
+              const newErrors: ValidationErrors = {}
+              responseData.details.forEach((detail: string) => {
+                if (detail.toLowerCase().includes('email')) newErrors.email = detail
+                if (detail.toLowerCase().includes('password')) newErrors.password = detail
+                if (detail.toLowerCase().includes('account')) newErrors.accountName = detail
+              })
+              setErrors(newErrors)
+            }
+            break
+          case 409:
+            errorMessage = 'Account already exists with this email or artist name'
             break
           case 500:
             errorMessage = 'Server error. Please try again later'
             break
           default:
-            errorMessage = error.response?.data?.message || 'Failed to create account'
+            errorMessage = responseData?.message || 'Failed to create account'
         }
       } else {
         errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred'
