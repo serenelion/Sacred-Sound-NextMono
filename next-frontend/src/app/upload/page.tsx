@@ -1,4 +1,3 @@
-
 'use client'
 
 import { PrivateRoute } from '@/components/private-route'
