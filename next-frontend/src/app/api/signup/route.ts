@@ -70,16 +70,17 @@ export async function POST(req: Request) {
 
   } catch (error) {
     console.error('Signup error:', error)
-    const status = (error as any)?.response?.status || 500
-    const message = (error as any)?.response?.data?.message || 'Internal server error'
+    const axiosError = error as import('axios').AxiosError
+    const status = axiosError.response?.status || 500
+    const message = axiosError.response?.data?.message || 'Internal server error'
     const errorResponse = { 
       success: false, 
       error: message,
-      details: (error as any)?.response?.data?.details || []
+      details: axiosError.response?.data?.details || []
     }
     
     // Special handling for existing account
-    if (error?.response?.status === 409) {
+    if (axiosError.response?.status === 409) {
       errorResponse.error = "An account already exists with this email or artist name"
       return NextResponse.json(errorResponse, { status: 409 })
     }
