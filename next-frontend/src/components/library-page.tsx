@@ -51,7 +51,11 @@ export function LibraryPage() {
                 <Card className="p-4 min-w-[280px] md:min-w-[320px] hover:shadow-lg transition-shadow">
                   <img src={item.artwork} alt={item.title} className="w-full h-48 object-cover rounded-md" />
                   <h3 className="mt-2 font-semibold">{item.title}</h3>
-                  <p className="text-sm text-gray-600">{item.artist}</p>
+                  <Link href={`/artist/${item.artist.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <p className="text-sm text-gray-600 hover:text-[#434289] hover:underline cursor-pointer">
+                      {item.artist}
+                    </p>
+                  </Link>
                 </Card>
               </Link>
             ))}
