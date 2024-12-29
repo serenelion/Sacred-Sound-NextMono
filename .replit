@@ -7,7 +7,7 @@ channel = "stable-24_05"
 
 [deployment]
 build = ["sh", "-c", "cd next-frontend && npm run build"]
-run = ["sh", "-c", "cd next-frontend && npm run start"]
+run = ["sh", "-c", "cd next-frontend && npm start"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
@@ -16,3 +16,5 @@ externalPort = 80
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
+PORT = "3000"
+HOST = "0.0.0.0"
