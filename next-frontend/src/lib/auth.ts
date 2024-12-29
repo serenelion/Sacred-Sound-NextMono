@@ -25,8 +25,11 @@ export const getUserEmailFromToken = (token: string): string | null => {
 
 export const refreshAccessToken = async (): Promise<string> => {
   try {
+    const token = localStorage.getItem('token')
     const response = await axios.post('/api/auth/refresh', {}, {
-      withCredentials: true
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     return response.data.token
   } catch (error) {
@@ -35,7 +38,7 @@ export const refreshAccessToken = async (): Promise<string> => {
   }
 }
 
-// Axios interceptors for automatic token handling
+// Add axios interceptors for automatic token handling
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -47,31 +50,12 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Add Firebase retry logic
-const MAX_RETRIES = 3
-const RETRY_DELAY = 1000
-
 axios.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // Handle Firebase specific errors
-    if (error?.code === 'ECONNABORTED' || error?.message?.includes('WebChannelConnection')) {
-      let retries = 0
-      while (retries < MAX_RETRIES) {
-        try {
-          await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retries + 1)))
-          return await axios(error.config)
-        } catch (retryError) {
-          retries++
-          if (retries === MAX_RETRIES) throw retryError
-        }
-      }
-    }
     const originalRequest = error.config
-
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
-
       try {
         const token = await refreshAccessToken()
         localStorage.setItem('token', token)
@@ -84,7 +68,6 @@ axios.interceptors.response.use(
         return Promise.reject(refreshError)
       }
     }
-
     return Promise.reject(error)
   }
 )
