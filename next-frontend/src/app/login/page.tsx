@@ -29,7 +29,11 @@ export default function LoginPage() {
       })
       
       login(response.data.token, response.data.isArtist)
-      router.push(redirect)
+      // Ensure redirect happens after login state is updated
+      setTimeout(() => {
+        router.push(redirect)
+        router.refresh()
+      }, 100)
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed')
     }

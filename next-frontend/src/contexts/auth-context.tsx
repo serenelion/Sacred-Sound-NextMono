@@ -94,6 +94,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     const email = getUserEmailFromToken(token)
     setUserEmail(email)
+    if (!email) {
+      router.push('/login')
+    }
   }
 
   const logout = () => {
