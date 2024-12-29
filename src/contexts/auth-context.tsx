@@ -5,6 +5,7 @@ import { getUserEmailFromToken, refreshAccessToken } from '@/lib/auth'
 
 interface AuthContextType {
   userEmail: string | null
+  isArtist: boolean
   loading: boolean
   login: (token: string) => void
   logout: () => void
@@ -14,6 +15,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userEmail, setUserEmail] = useState<string | null>(null)
+  const [isArtist, setIsArtist] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

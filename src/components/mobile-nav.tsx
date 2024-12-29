@@ -8,6 +8,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 export function MobileNav() {
+  const { isArtist } = useAuth()
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t md:hidden">
       <div className="flex justify-around p-2">
