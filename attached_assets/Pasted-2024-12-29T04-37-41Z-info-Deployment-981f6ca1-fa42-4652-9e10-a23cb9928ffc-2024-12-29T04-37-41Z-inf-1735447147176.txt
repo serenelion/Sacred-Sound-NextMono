@@ -1,0 +1,82 @@
+2024-12-29T04:37:41Z info: Deployment: 981f6ca1-fa42-4652-9e10-a23cb9928ffc
+2024-12-29T04:37:41Z info: Build: f4819335-74dd-4f88-9138-a97558085fe0
+2024-12-29T04:37:41Z info: Connecting to builder
+2024-12-29T04:37:44Z info: Builder connected
+2024-12-29T04:37:45Z info: Installing packages
+2024-12-29T04:37:45Z info: Starting Build
+
+> @sacred-sound/next-frontend@0.1.0 build
+> next build
+
+
+   ▲ Next.js 15.1.3
+
+   Creating an optimized production build ...
+
+ ✓ Compiled successfully
+
+   Linting and checking validity of types ...
+
+
+./src/app/api/auth/refresh/route.ts
+3:10  Warning: 'jwtVerify' is defined but never used.  @typescript-eslint/no-unused-vars
+3:21  Warning: 'SignJWT' is defined but never used.  @typescript-eslint/no-unused-vars
+5:7  Warning: 'JWT_SECRET' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+16:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/changePassword/route.ts
+21:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/login/route.ts
+18:11  Warning: 'rateLimitKey' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+25:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/signup/route.ts
+21:11  Warning: 'ErrorResponse' is defined but never used.  @typescript-eslint/no-unused-vars
+73:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+74:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/login/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/artist-signup-form.tsx
+50:37  Warning: React Hook useCallback received a function whose dependencies are unknown. Pass an inline function instead.  react-hooks/exhaustive-deps
+
+./src/components/library-page.tsx
+5:10  Warning: 'useAuth' is defined but never used.  @typescript-eslint/no-unused-vars
+48:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+60:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/contexts/auth-context.tsx
+27:15  Warning: 'MAX_RETRIES' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+28:15  Warning: 'RETRY_DELAY' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+
+Failed to compile.
+
+
+./src/app/api/login/route.ts:3:10
+Type error: Module '"../signup/route"' declares 'SignupRequest' locally, but it is not exported.
+
+  1 |
+  2 | import { NextResponse } from 'next/server';
+> 3 | import { SignupRequest } from '../signup/route';
+    |          ^
+  4 |
+  5 | export async function POST(req: Request) {
+  6 |   try {
+
+Static worker exited with code: 1 and signal: null
+
+npm error Lifecycle script `build` failed with error:
+
+npm error path /home/runner/workspace/next-frontend
+
+npm error workspace @sacred-sound/next-frontend@0.1.0
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.0.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.0.0
+npm notice To update run: npm install -g npm@11.0.0
+npm notice
