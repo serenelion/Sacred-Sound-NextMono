@@ -24,12 +24,7 @@
 ## Phase 3: User Management
 - [ ] Profile System
   - Artist profiles
-  - User preferences
   - Account settings
-- [ ] Role Management
-  - Artist permissions
-  - Admin controls
-  - Moderation tools
 
 ## Phase 4: Integration
 - [ ] API Security
