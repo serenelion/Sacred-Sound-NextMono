@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArtistSignupForm } from '@/components/artist-signup-form'
-import { Button } from '@/components/ui/button'
+
 
 export const metadata: Metadata = {
   title: 'Artist Signup | Sacred Sound',
