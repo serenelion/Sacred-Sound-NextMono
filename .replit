@@ -6,6 +6,6 @@ hidden = [".build", ".config"]
 channel = "stable-23_05"
 
 [deployment]
-run = ["sh", "-c", "cd next-frontend && NODE_ENV=production npm run start"]
-build = ["sh", "-c", "cd next-frontend && npm ci && npm run build"]
+run = ["sh", "-c", "cd next-frontend && npm run start"]
+build = ["sh", "-c", "cd next-frontend && npm install && npm run build"]
 deploymentTarget = "cloudrun"
