@@ -1,6 +1,7 @@
 
 run = "cd next-frontend && npm run dev"
 hidden = [".build", ".config"]
+modules = ["nodejs-20"]
 
 [nix]
 channel = "stable-23_05"
@@ -9,3 +10,7 @@ channel = "stable-23_05"
 run = ["sh", "-c", "cd next-frontend && npm run start"]
 build = ["sh", "-c", "cd next-frontend && npm install && npm run build"]
 deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
