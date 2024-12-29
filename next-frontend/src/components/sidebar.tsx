@@ -65,18 +65,15 @@ export function Sidebar() {
           </Button>
         </Link>
         
-        {/* Upload button only visible to artists */}
-        {isArtist && (
-          <Link href="/upload">
-            <Button
-              variant="ghost"
-              className="w-full justify-start gap-2 rounded-lg font-medium text-[#434289] hover:bg-white/50"
-            >
-              <Upload className="h-5 w-5" />
-              Upload
-            </Button>
-          </Link>
-        )}
+        <Link href="/upload">
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-2 rounded-lg font-medium text-[#434289] hover:bg-white/50"
+          >
+            <Upload className="h-5 w-5" />
+            Upload
+          </Button>
+        </Link>
       </nav>
 
       <div className="mt-auto p-4">

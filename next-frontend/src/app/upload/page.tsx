@@ -1,14 +1,15 @@
+
 'use client'
 
-import { PrivateRoute } from '@/components/private-route'
+import { UploadContent } from '@/components/upload-content'
+import { useRouter } from 'next/navigation'
 
 export default function UploadPage() {
+  const router = useRouter()
+  
   return (
-    <PrivateRoute requireArtist={true}>
-      <div className="flex-1 p-8">
-        <h1 className="text-2xl font-bold mb-4">Upload Content</h1>
-        {/* Upload form components will go here */}
-      </div>
-    </PrivateRoute>
+    <div className="min-h-screen bg-[#FAFAFA]">
+      <UploadContent onClose={() => router.push('/')} />
+    </div>
   )
 }
