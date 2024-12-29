@@ -123,11 +123,11 @@ export function ArtistSignupForm() {
         throw new Error('API Base URL is not defined')
       }
 
-      const formData = new FormData(e.target as HTMLFormElement);
+      // Use the controlled form state instead of FormData
       const data: SignupFormData = {
-        accountName: formData.get('accountName') as string,
-        email: formData.get('email') as string,
-        password: formData.get('password') as string,
+        accountName: formData.accountName,
+        email: formData.email,
+        password: formData.password,
         isArtist: true
       }
 

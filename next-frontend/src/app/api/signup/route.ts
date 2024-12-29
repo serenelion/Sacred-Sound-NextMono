@@ -18,17 +18,17 @@ interface SignupRequest {
   isArtist?: boolean;
 }
 
+interface ErrorResponse {
+  success: boolean;
+  error: string;
+  details?: string[];
+}
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as SignupRequest as {
-      accountName: string;
-      email: string;
-      password: string;
-      isArtist?: boolean;
-    }
+    const body = (await req.json()) as SignupRequest;
     
-    const { accountName, email, password } = body
-    const isArtist = body.isArtist || false
+    const { accountName, email, password } = body;
 
     // Validate required fields
     const errors = [];
