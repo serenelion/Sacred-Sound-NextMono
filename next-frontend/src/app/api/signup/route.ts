@@ -14,7 +14,8 @@ export async function OPTIONS() {
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { email, password, accountName, isArtist } = body
+    const { accountName, email, password } = body
+    const isArtist = body.isArtist || false
     
     if (!email || !password || !accountName) {
       return new Response(
@@ -43,12 +44,11 @@ export async function POST(req: Request) {
 
   } catch (error) {
     console.error('Signup error:', error)
+    const status = (error as any)?.response?.status || 500
+    const message = (error as any)?.response?.data?.message || 'Internal server error'
     return NextResponse.json(
-      { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Failed to process signup'
-      },
-      { status: 500 }
+      { success: false, error: message },
+      { status }
     )
   }
 }

@@ -47,9 +47,26 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
+// Add Firebase retry logic
+const MAX_RETRIES = 3
+const RETRY_DELAY = 1000
+
 axios.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // Handle Firebase specific errors
+    if (error?.code === 'ECONNABORTED' || error?.message?.includes('WebChannelConnection')) {
+      let retries = 0
+      while (retries < MAX_RETRIES) {
+        try {
+          await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retries + 1)))
+          return await axios(error.config)
+        } catch (retryError) {
+          retries++
+          if (retries === MAX_RETRIES) throw retryError
+        }
+      }
+    }
     const originalRequest = error.config
 
     if (error.response?.status === 401 && !originalRequest._retry) {
