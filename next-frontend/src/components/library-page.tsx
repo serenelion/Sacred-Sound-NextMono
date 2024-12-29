@@ -1,9 +1,7 @@
 
-import Link from 'next/link'
-
-
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/auth-context'
 import { Card } from './ui/card'
