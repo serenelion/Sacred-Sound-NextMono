@@ -1,12 +1,18 @@
 
 import { NextResponse } from 'next/server'
-import jwt from 'jsonwebtoken'
+import { jwtVerify, SignJWT } from 'jose'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || 'your-secret-key'
+)
 
 export async function POST() {
   try {
-    const newToken = jwt.sign({}, JWT_SECRET, { expiresIn: '6h' })
+    const newToken = await new SignJWT({})
+      .setProtectedHeader({ alg: 'HS256' })
+      .setExpirationTime('6h')
+      .sign(JWT_SECRET)
+      
     return NextResponse.json({ token: newToken })
   } catch (error) {
     return NextResponse.json(
