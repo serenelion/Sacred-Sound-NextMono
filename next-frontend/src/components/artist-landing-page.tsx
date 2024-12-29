@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     question: 'How does revenue sharing work?',
-    answer: 'Sacred Sound offers transparent and fair revenue sharing. Artists receive a majority share of streaming revenue and can also earn through direct support features, live events, and exclusive content.'
+    answer: &apos;Sacred Sound offers transparent and fair revenue sharing. Artists receive a majority share of streaming revenue and can also earn through direct support features, live events, and exclusive content.&apos;
   },
   {
     question: 'Can I maintain my music on other platforms?',

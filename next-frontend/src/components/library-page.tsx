@@ -16,7 +16,6 @@ interface ContentItem {
 }
 
 export function LibraryPage() {
-  const { isArtist } = useAuth()
   const [newReleases, setNewReleases] = useState<ContentItem[]>([])
   const [featured, setFeatured] = useState<ContentItem[]>([])
 
