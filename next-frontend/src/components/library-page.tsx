@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/auth-context'
 import { Card } from './ui/card'
 import { Sidebar } from './sidebar'
-import { MobileNav } from './mobile-nav'
+
 import { SwipeComponent } from './swipe-component'
 
 interface ContentItem {

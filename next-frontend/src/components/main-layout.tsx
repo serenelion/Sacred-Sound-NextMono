@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Sidebar } from './sidebar'
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
@@ -10,7 +10,14 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen">
       <Sidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
-      <main className={`flex-1 transition-all duration-200 ${isSidebarOpen ? 'md:ml-[240px]' : 'ml-0'}`}>
+      <main 
+        className={`
+          flex-1 
+          transition-all 
+          duration-200 
+          ${isSidebarOpen ? 'ml-[240px]' : 'ml-[40px]'}
+        `}
+      >
         <div className="max-w-[1200px] mx-auto p-6">
           {children}
         </div>
