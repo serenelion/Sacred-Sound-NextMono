@@ -114,11 +114,11 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
         </div>
 
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="tracks">
+          <Droppable droppableId="tracks" isDropDisabled={false}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
                 {details.tracks.map((file, index) => (
-                  <Draggable key={file.name} draggableId={file.name} index={index}>
+                  <Draggable key={file.name} draggableId={file.name} index={index} isDragDisabled={false}>
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
