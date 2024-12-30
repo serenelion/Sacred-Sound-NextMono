@@ -1,0 +1,46 @@
+[14:01:59.255] Log Level: 2
+[14:01:59.272] SSH Resolver called for "ssh-remote+7b22686f73744e616d65223a2265663135623230332d326666392d346631392d623736662d3437636665343563666233342d30302d3173766a6f6377347a316c6c382e73706f636b2e7265706c69742e646576222c2275736572223a22737368202d692025484f4d4550415448252f2e7373682f7265706c6974202d702032322065663135623230332d326666392d346631392d623736662d343763666534356366623334227d", attempt 1
+[14:01:59.273] "remote.SSH.useLocalServer": false
+[14:01:59.273] "remote.SSH.useExecServer": true
+[14:01:59.274] "remote.SSH.showLoginTerminal": false
+[14:01:59.274] "remote.SSH.remotePlatform": {}
+[14:01:59.274] "remote.SSH.path": undefined
+[14:01:59.274] "remote.SSH.configFile": undefined
+[14:01:59.274] "remote.SSH.useFlock": true
+[14:01:59.275] "remote.SSH.lockfilesInTmp": false
+[14:01:59.275] "remote.SSH.localServerDownload": auto
+[14:01:59.275] "remote.SSH.remoteServerListenOnSocket": false
+[14:01:59.275] "remote.SSH.showLoginTerminal": false
+[14:01:59.276] "remote.SSH.defaultExtensions": []
+[14:01:59.276] "remote.SSH.loglevel": 2
+[14:01:59.276] "remote.SSH.enableDynamicForwarding": true
+[14:01:59.276] "remote.SSH.enableRemoteCommand": false
+[14:01:59.277] "remote.SSH.serverPickPortsFromRange": {}
+[14:01:59.277] "remote.SSH.serverInstallPath": {}
+[14:01:59.277] "remote.SSH.permitPtyAllocation": false
+[14:01:59.278] "remote.SSH.preferredLocalPortRange: undefined
+[14:01:59.278] "remote.SSH.useCurlAndWgetConfigurationFiles: false
+[14:01:59.298] SSH Resolver called for host: ssh -i %HOMEPATH%/.ssh/replit -p 22 ef15b203-2ff9-4f19-b76f-47cfe45cfb34@ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev
+[14:01:59.299] Setting up SSH remote "ef15b203-2ff9-4f19-b76f-47cfe45cfb34-00-1svjocw4z1ll8.spock.replit.dev"
+[14:01:59.307] Resolver error: Error: SSH user name cannot include the character %
+	at m.Create (c:\Users\Admin\.cursor\extensions\ms-vscode-remote.remote-ssh-0.113.1\out\extension.js:2:501230)
+	at c:\Users\Admin\.cursor\extensions\ms-vscode-remote.remote-ssh-0.113.1\out\extension.js:2:612777
+	at Array.forEach (<anonymous>)
+	at t.assertValidHost (c:\Users\Admin\.cursor\extensions\ms-vscode-remote.remote-ssh-0.113.1\out\extension.js:2:612553)
+	at _.resolve (c:\Users\Admin\.cursor\extensions\ms-vscode-remote.remote-ssh-0.113.1\out\extension.js:2:850749)
+	at async m.$resolveAuthority (c:\Users\Admin\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:196:19051)
+[14:01:59.314] VS Code version: 0.44.9
+[14:01:59.314] Remote-SSH version: remote-ssh@0.113.1
+[14:01:59.314] win32 x64
+[14:01:59.319] ------
+
+
+
+
+[14:02:00.923] Opening exec server for ssh-remote+7b22686f73744e616d65223a2265663135623230332d326666392d346631392d623736662d3437636665343563666233342d30302d3173766a6f6377347a316c6c382e73706f636b2e7265706c69742e646576222c2275736572223a22737368202d692025484f4d4550415448252f2e7373682f7265706c6974202d702032322065663135623230332d326666392d346631392d623736662d343763666534356366623334227d
+[14:02:00.956] Initizing new exec server for ssh-remote+7b22686f73744e616d65223a2265663135623230332d326666392d346631392d623736662d3437636665343563666233342d30302d3173766a6f6377347a316c6c382e73706f636b2e7265706c69742e646576222c2275736572223a22737368202d692025484f4d4550415448252f2e7373682f7265706c6974202d702032322065663135623230332d326666392d346631392d623736662d343763666534356366623334227d
+[14:02:01.005] Using commit id "316e524257c2ea23b755332b0a72c50cf23e1b00" and quality "stable" for server
+[14:02:01.022] Install and start server if needed
+[14:02:07.740] getPlatformForHost was canceled
+[14:02:07.741] Exec server for ssh-remote+7b22686f73744e616d65223a2265663135623230332d326666392d346631392d623736662d3437636665343563666233342d30302d3173766a6f6377347a316c6c382e73706f636b2e7265706c69742e646576222c2275736572223a22737368202d692025484f4d4550415448252f2e7373682f7265706c6974202d702032322065663135623230332d326666392d346631392d623736662d343763666534356366623334227d failed: Error: Connecting was canceled
+[14:02:07.741] Error opening exec server for ssh-remote
