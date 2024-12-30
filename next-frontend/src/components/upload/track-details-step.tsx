@@ -94,7 +94,7 @@ const selectStyles = {
     color: state.isSelected ? 'white' : 'black',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: 'hsl(var(--accent))',
+      backgroundColor: '#008080',
       color: 'white',
     }
   }),
