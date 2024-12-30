@@ -83,18 +83,38 @@ const selectStyles = {
   }),
   menu: (base: any) => ({
     ...base,
-    backgroundColor: 'hsl(var(--background))',
+    backgroundColor: 'white',
     borderRadius: 'calc(var(--radius))',
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    zIndex: 1000,
   }),
   option: (base: any, state: any) => ({
     ...base,
-    backgroundColor: state.isSelected ? 'hsl(var(--accent))' : 'transparent',
-    color: state.isSelected ? 'hsl(var(--accent-foreground))' : 'inherit',
+    backgroundColor: state.isSelected ? 'hsl(var(--accent))' : 'white',
+    color: state.isSelected ? 'white' : 'black',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'hsl(var(--accent))',
-      color: 'hsl(var(--accent-foreground))',
+      color: 'white',
     }
+  }),
+  multiValue: (base: any) => ({
+    ...base,
+    backgroundColor: 'hsl(var(--accent))',
+    borderRadius: 'calc(var(--radius) - 2px)',
+    color: 'white',
+  }),
+  multiValueLabel: (base: any) => ({
+    ...base,
+    color: 'white',
+  }),
+  multiValueRemove: (base: any) => ({
+    ...base,
+    color: 'white',
+    ':hover': {
+      backgroundColor: 'hsl(var(--destructive))',
+      color: 'white',
+    },
   }),
   multiValue: (base: any) => ({
     ...base,
