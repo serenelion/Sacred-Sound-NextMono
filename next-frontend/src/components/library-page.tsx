@@ -16,12 +16,14 @@ interface ContentItem {
 }
 
 export function LibraryPage() {
+  const { userEmail } = useAuth()
   const [newReleases, setNewReleases] = useState<ContentItem[]>([])
   const [featured, setFeatured] = useState<ContentItem[]>([])
 
   useEffect(() => {
+    console.log('Current user email:', userEmail)
     fetchLibraryContent()
-  }, [])
+  }, [userEmail])
 
   const fetchLibraryContent = async () => {
     try {
