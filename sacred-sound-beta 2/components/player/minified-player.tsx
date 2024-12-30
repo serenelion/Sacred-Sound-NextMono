@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import { Heart, MoreHorizontal, Pause, Play, Repeat, Shuffle, SkipBack, SkipForward, Volume2 } from 'lucide-react'
+import { Heart, Maximize2, MoreHorizontal, Pause, Play, Repeat, Shuffle, SkipBack, SkipForward, Volume2 } from 'lucide-react'
 import { usePlayer } from "@/contexts/player-context"
 import { formatTime } from "@/lib/utils"
 
@@ -13,6 +13,7 @@ export function MinifiedPlayer() {
     currentTime,
     duration,
     togglePlay,
+    toggleFullscreen,
     seek,
   } = usePlayer()
 
@@ -75,8 +76,8 @@ export function MinifiedPlayer() {
                 className="w-[100px]"
               />
             </div>
-            <Button variant="ghost" size="icon">
-              <MoreHorizontal className="h-4 w-4" />
+            <Button variant="ghost" size="icon" onClick={toggleFullscreen}>
+              <Maximize2 className="h-4 w-4" />
             </Button>
           </div>
         </div>
