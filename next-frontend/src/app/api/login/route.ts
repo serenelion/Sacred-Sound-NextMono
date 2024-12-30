@@ -23,7 +23,6 @@ export async function POST(req: Request) {
       }),
       credentials: 'include'
     });
-    console.log("API Response:", response.json());
 
     const data = await response.json();
     
