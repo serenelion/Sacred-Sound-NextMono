@@ -3,71 +3,54 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Toaster } from 'sonner'
+import { UploadProvider } from '@/contexts/upload-context'
+import { UploadLayout } from '@/components/upload/upload-layout'
 import { UploadChoice } from '@/components/upload/upload-choice'
 import { UploadStep } from '@/components/upload/upload-step'
-import { TrackDetailsStep } from '@/components/upload/track-details-step'
 import { AlbumDetailsStep } from '@/components/upload/album-details-step'
+import { TrackDetailsStep } from '@/components/upload/track-details-step'
 
-type UploadType = 'album' | 'individual' | null
-type Step = 'choice' | 'upload' | 'album-details' | 'track-details' | 'complete'
+type Step = 'choice' | 'upload' | 'details' | 'review'
 
 export default function UploadPage() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState<Step>('choice')
-  const [uploadType, setUploadType] = useState<UploadType>(null)
-  const [files, setFiles] = useState<File[]>([])
-  const [albumId, setAlbumId] = useState<string | null>(null)
 
-  const handleComplete = () => {
-    router.push('/library')
-  }
+  const stepNumber = {
+    choice: 1,
+    upload: 2,
+    details: 3,
+    review: 4
+  }[currentStep]
 
   return (
-    <div className="min-h-screen bg-background">
-      <Toaster />
-      
-      {currentStep === 'choice' && (
-        <UploadChoice 
-          onSelect={(type) => {
-            setUploadType(type)
-            setCurrentStep('upload')
-          }}
-        />
-      )}
+    <UploadProvider>
+      <UploadLayout step={stepNumber} onClose={() => router.push('/')}>
+        {currentStep === 'choice' && (
+          <UploadChoice onSelect={() => setCurrentStep('upload')} />
+        )}
 
-      {currentStep === 'upload' && uploadType && (
-        <UploadStep
-          uploadType={uploadType}
-          onBack={() => {
-            setUploadType(null)
-            setCurrentStep('choice')
-          }}
-          onComplete={(uploadedFiles) => {
-            setFiles(uploadedFiles)
-            setCurrentStep(uploadType === 'album' ? 'album-details' : 'track-details')
-          }}
-        />
-      )}
+        {currentStep === 'upload' && (
+          <UploadStep 
+            onBack={() => setCurrentStep('choice')}
+            onComplete={() => setCurrentStep('details')}
+          />
+        )}
 
-      {currentStep === 'album-details' && (
-        <AlbumDetailsStep
-          onBack={() => setCurrentStep('upload')}
-          onComplete={(id) => {
-            setAlbumId(id)
-            setCurrentStep('track-details')
-          }}
-        />
-      )}
+        {currentStep === 'details' && (
+          <TrackDetailsStep
+            onBack={() => setCurrentStep('upload')}
+            onComplete={() => setCurrentStep('review')}
+          />
+        )}
 
-      {currentStep === 'track-details' && (
-        <TrackDetailsStep
-          files={files}
-          albumId={albumId}
-          onBack={() => setCurrentStep(uploadType === 'album' ? 'album-details' : 'upload')}
-          onComplete={handleComplete}
-        />
-      )}
-    </div>
+        {currentStep === 'review' && (
+          <div className="text-center space-y-4">
+            <h2 className="text-2xl font-bold">Upload Complete!</h2>
+            <p className="text-muted-foreground">Your content will be reviewed shortly.</p>
+          </div>
+        )}
+      </UploadLayout>
+    </UploadProvider>
   )
 }
