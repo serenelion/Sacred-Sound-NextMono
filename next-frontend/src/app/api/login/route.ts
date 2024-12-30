@@ -21,7 +21,9 @@ export async function POST(req: Request) {
         email: body.email,
         password: body.password,
       }),
+      credentials: 'include'
     });
+    console.log("API Response:", response.json());
 
     const data = await response.json();
     
