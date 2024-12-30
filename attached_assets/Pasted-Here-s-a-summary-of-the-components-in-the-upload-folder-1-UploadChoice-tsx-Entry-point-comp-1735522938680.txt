@@ -1,0 +1,138 @@
+Here's a summary of the components in the upload folder:
+
+1. `UploadChoice.tsx`
+
+
+- Entry point component for the upload flow
+- Presents two options to users:
+
+- Create an Album (multiple pieces as a collection)
+- Upload Individual Content
+
+
+
+- Uses Card components to display choices
+- Manages upload type state ('album' | 'individual')
+
+
+2. `ContentUpload.tsx`
+
+
+- Main upload flow container
+- Handles both album and individual content uploads
+- Features:
+
+- Album details form (title, description, release date)
+- File drag-and-drop interface
+- Progress tracking
+- Two-step process (upload → details)
+
+
+
+- Integrates with other upload components
+
+
+3. `UploadContent.tsx`
+
+
+- Manages the upload progress workflow
+- Features:
+
+- Progress indicator (50% → 100%)
+- Two-step navigation
+- File handling and progress tracking
+
+
+
+- Coordinates between UploadStep and TrackDetailsStep
+
+
+4. `UploadStep.tsx`
+
+
+- Handles the initial file upload process
+- Features:
+
+- Technical requirements display
+- Album creation option
+- Drag-and-drop file upload
+- File list management
+- Upload progress tracking
+
+
+
+
+
+5. `TrackDetailsStep.tsx`
+
+
+- Comprehensive form for track metadata
+- Features:
+
+- Cover image upload
+- Basic info (title, description)
+- Rich metadata options:
+
+- Categories
+- Genres
+- Instruments
+- Languages
+- Deities
+- Traditions
+
+
+
+- Vocal type selection
+- Multi-track navigation
+- Publishing workflow
+
+
+
+
+
+6. `TechnicalRequirements.tsx`
+
+
+- Displays technical specifications
+- Shows requirements for:
+
+- Audio content (WAV, FLAC, AIFF)
+- Video content (MP4)
+
+
+
+- Includes quality standards and recommendations
+
+
+7. `QAProcess.tsx`
+
+
+- Displays quality assurance information
+- Three main aspects:
+
+- Technical Review
+- Content Curation
+- Metadata Verification
+
+
+
+- Uses Card layout with icons and descriptions
+
+
+8. `ContentList.tsx`
+
+
+- Manages the list of uploaded files
+- Features:
+
+- Drag-and-drop reordering
+- File type icons
+- Progress indicators
+- Delete functionality
+- Album-specific ordering
+
+
+
+
+
+The components form a cohesive upload system with a focus on sacred music and content, featuring extensive metadata options and quality control measures. The system supports both album and individual content uploads with a user-friendly interface and comprehensive content management capabilities.
