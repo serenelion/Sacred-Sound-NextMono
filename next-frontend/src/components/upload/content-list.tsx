@@ -1,12 +1,12 @@
 
 'use client'
 
-import { useState } from 'react'
 import { UploadedFile } from '@/types/upload'
 import { Progress } from '@/components/ui/progress'
 import { Trash2, FileText, GripVertical } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import type { DropResult } from 'react-beautiful-dnd'
 
 interface ContentListProps {
   files: UploadedFile[]
@@ -16,9 +16,9 @@ interface ContentListProps {
 }
 
 export function ContentList({ files, onRemove, onReorder, isDisabled = false }: ContentListProps) {
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return
-
+    
     const items = Array.from(files)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
@@ -28,11 +28,11 @@ export function ContentList({ files, onRemove, onReorder, isDisabled = false }: 
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="tracks" isDropDisabled={isDisabled}>
+      <Droppable droppableId="tracks">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
             {files.map((file, index) => (
-              <Draggable key={file.id} draggableId={file.id} index={index} isDragDisabled={isDisabled}>
+              <Draggable key={file.id} draggableId={file.id} index={index}>
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
@@ -51,7 +51,6 @@ export function ContentList({ files, onRemove, onReorder, isDisabled = false }: 
                       variant="ghost"
                       size="icon"
                       onClick={() => onRemove(file.id)}
-                      disabled={isDisabled}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
