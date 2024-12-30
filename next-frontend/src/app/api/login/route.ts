@@ -1,19 +1,9 @@
 
 import { NextResponse } from 'next/server';
-import { SignJWT } from 'jose';
-
-interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key'
-);
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as LoginRequest;
+    const body = await req.json();
 
     if (!body.email || !body.password) {
       return NextResponse.json(
@@ -22,26 +12,46 @@ export async function POST(req: Request) {
       );
     }
 
-    // TODO: Add your actual user validation here
-    // For now, we'll accept any credentials for testing
-    const token = await new SignJWT({ 
-      email: body.email,
-      isArtist: false // Set this based on user data
-    })
-      .setProtectedHeader({ alg: 'HS256' })
-      .setExpirationTime('6h')
-      .sign(JWT_SECRET);
-
-    return NextResponse.json({ 
-      success: true,
-      message: 'Login successful',
-      token
+    const response = await fetch(`${process.env.API_BASE_URL}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: body.email,
+        password: body.password,
+      }),
     });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      return NextResponse.json(
+        { success: false, message: data.message || 'Login failed' },
+        { status: response.status }
+      );
+    }
+
+    // Get the refresh token cookie from the backend response
+    const cookies = response.headers.get('set-cookie');
+    
+    // Create our response with the access token
+    const clientResponse = NextResponse.json({ 
+      success: true,
+      token: data.accessToken 
+    });
+
+    // Forward the refresh token cookie if it exists
+    if (cookies) {
+      clientResponse.headers.set('set-cookie', cookies);
+    }
+
+    return clientResponse;
 
   } catch (error: any) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { success: false, message: error?.message || 'Internal server error' },
+      { success: false, message: 'Internal server error' },
       { status: 500 }
     );
   }
