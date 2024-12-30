@@ -1,42 +1,70 @@
 
-import { useState, useCallback } from 'react'
-import { UploadedFile, TrackMetadata } from '@/types/upload'
-import { v4 as uuidv4 } from 'uuid'
+import { useState } from 'react'
+import { UploadedFile, AlbumDetails, TrackDetails } from '@/types/upload'
 
 export const useUpload = () => {
   const [files, setFiles] = useState<UploadedFile[]>([])
+  const [isUploading, setIsUploading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const addFiles = useCallback((newFiles: File[]) => {
+  const addFiles = (newFiles: File[]) => {
     const uploadFiles = newFiles.map(file => ({
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       file,
       progress: 0,
-      status: 'pending' as const,
+      status: 'pending' as const
     }))
     setFiles(prev => [...prev, ...uploadFiles])
-  }, [])
+  }
 
-  const updateFileProgress = useCallback((id: string, progress: number) => {
-    setFiles(prev => prev.map(file => 
-      file.id === id ? { ...file, progress, status: 'uploading' } : file
-    ))
-  }, [])
+  const uploadAlbum = async (albumDetails: AlbumDetails) => {
+    setIsUploading(true)
+    setError(null)
+    
+    try {
+      // Create album
+      const albumResponse = await fetch('/api/upload/createAlbum', {
+        method: 'POST',
+        body: JSON.stringify(albumDetails)
+      })
+      const album = await albumResponse.json()
+      
+      // Upload tracks
+      for (const file of files) {
+        const formData = new FormData()
+        formData.append('file', file.file)
+        
+        const trackResponse = await fetch('/api/upload/uploadTrack', {
+          method: 'POST',
+          body: formData
+        })
+        
+        if (!trackResponse.ok) throw new Error('Failed to upload track')
+        
+        setFiles(prev => prev.map(f => 
+          f.id === file.id ? { ...f, status: 'completed', progress: 100 } : f
+        ))
+      }
+      
+      return album
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Upload failed')
+      throw err
+    } finally {
+      setIsUploading(false)
+    }
+  }
 
-  const updateFileMetadata = useCallback((id: string, metadata: TrackMetadata) => {
-    setFiles(prev => prev.map(file =>
-      file.id === id ? { ...file, metadata } : file
-    ))
-  }, [])
-
-  const removeFile = useCallback((id: string) => {
+  const removeFile = (id: string) => {
     setFiles(prev => prev.filter(file => file.id !== id))
-  }, [])
+  }
 
   return {
     files,
+    isUploading,
+    error,
     addFiles,
-    updateFileProgress,
-    updateFileMetadata,
+    uploadAlbum,
     removeFile
   }
 }
