@@ -1,4 +1,3 @@
-
 'use client'
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -12,17 +11,25 @@ interface UploadChoiceProps {
 export function UploadChoice({ onSelect }: UploadChoiceProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      <Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => onSelect('album')}>
+      <Card 
+        className="cursor-pointer hover:border-primary transition-colors group relative" 
+        onClick={() => onSelect('album')}
+      >
+        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg" />
         <CardHeader>
-          <Album className="w-8 h-8 mb-2 text-primary" />
+          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+            <Album className="w-6 h-6 text-primary" />
+          </div>
           <CardTitle>Create an Album</CardTitle>
           <CardDescription>
-            Bundle related tracks together into a cohesive collection. Perfect for live recordings, 
-            concert series, or themed spiritual content.
+            Upload multiple pieces of content as a cohesive collection. Perfect for concert recordings,
+            workshop series, or themed content collections.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button variant="secondary" className="w-full">Create Album</Button>
+          <Button variant="secondary" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+            Start Album Creation
+          </Button>
         </CardContent>
       </Card>
 

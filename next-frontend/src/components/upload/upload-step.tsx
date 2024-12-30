@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useCallback, useState } from 'react'
@@ -90,10 +89,23 @@ export function UploadStep({ uploadType, onBack, onComplete }: UploadStepProps) 
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  {file.status === 'complete' ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                  {file.status === 'completed' ? (
+                    <div className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-500" />
+                      <span className="text-xs text-green-500">Complete</span>
+                    </div>
                   ) : file.progress > 0 ? (
-                    <Progress value={file.progress} className="w-20" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-20 h-1 bg-secondary rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-primary transition-all duration-300" 
+                          style={{ width: `${file.progress}%` }}
+                        />
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {file.progress}%
+                      </span>
+                    </div>
                   ) : (
                     <Button
                       variant="ghost"
