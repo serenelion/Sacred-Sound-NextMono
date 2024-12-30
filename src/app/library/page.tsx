@@ -9,7 +9,9 @@ export default function Library() {
   return (
     <PrivateRoute>
       <div className="flex flex-col h-screen">
-        <LibraryPage />
+        <main className="flex-1 overflow-y-auto">
+          <LibraryPage />
+        </main>
         <MediaPlayer />
       </div>
     </PrivateRoute>
