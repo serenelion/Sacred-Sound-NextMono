@@ -1,55 +1,26 @@
 
 'use client'
 
-import { UploadProvider } from '../../contexts/upload-context'
-import { UploadLayout } from '@/components/upload/upload-layout'
-import { UploadChoice } from '@/components/upload/upload-choice'
-import { UploadStep } from '@/components/upload/upload-step'
-import { TrackDetailsStep } from '@/components/upload/track-details-step'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-
-type Step = 'choice' | 'upload' | 'details' | 'review'
+import { UploadChoice } from "@/components/upload/upload-choice"
+import { ContentUpload } from "@/components/upload/content-upload"
+import { UploadProvider } from "@/contexts/upload-context"
+import { useState } from "react"
 
 export default function UploadPage() {
-  const router = useRouter()
-  const [currentStep, setCurrentStep] = useState<Step>('choice')
-
-  const stepNumber = {
-    choice: 1,
-    upload: 2,
-    details: 3,
-    review: 4
-  }[currentStep]
+  const [uploadType, setUploadType] = useState<'album' | 'individual' | null>(null)
 
   return (
     <UploadProvider>
-      <UploadLayout step={stepNumber} onClose={() => router.push('/')}>
-        {currentStep === 'choice' && (
-          <UploadChoice onSelect={() => setCurrentStep('upload')} />
-        )}
-
-        {currentStep === 'upload' && (
-          <UploadStep 
-            onBack={() => setCurrentStep('choice')}
-            onComplete={() => setCurrentStep('details')}
+      <main className="container mx-auto p-6 max-w-5xl">
+        {!uploadType ? (
+          <UploadChoice onSelect={setUploadType} />
+        ) : (
+          <ContentUpload 
+            uploadType={uploadType} 
+            onBack={() => setUploadType(null)} 
           />
         )}
-
-        {currentStep === 'details' && (
-          <TrackDetailsStep
-            onBack={() => setCurrentStep('upload')}
-            onComplete={() => setCurrentStep('review')}
-          />
-        )}
-
-        {currentStep === 'review' && (
-          <div className="text-center space-y-4">
-            <h2 className="text-2xl font-bold">Upload Complete!</h2>
-            <p>Your content will be reviewed shortly.</p>
-          </div>
-        )}
-      </UploadLayout>
+      </main>
     </UploadProvider>
   )
 }
