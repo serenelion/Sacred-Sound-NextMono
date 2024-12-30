@@ -5,12 +5,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { UploadLayout } from '@/components/upload/upload-layout'
 import { UploadChoice } from '@/components/upload/upload-choice'
-import { UploadStep } from '@/components/upload/upload-step'
 import { AlbumDetailsStep } from '@/components/upload/album-details-step'
 import { TrackDetailsStep } from '@/components/upload/track-details-step'
 
 type UploadType = 'album' | 'individual' | null
-type Step = 'choice' | 'album-details' | 'upload' | 'track-details' | 'review'
+type Step = 'choice' | 'details' | 'review'
 
 export default function UploadPage() {
   const router = useRouter()
@@ -21,44 +20,30 @@ export default function UploadPage() {
   const [albumDetails, setAlbumDetails] = useState({
     title: '',
     description: '',
-    artwork: null as File | null
+    artwork: null as File | null,
+    tracks: [] as File[]
   })
 
   const stepNumber = {
     choice: 1,
-    'album-details': 2,
-    upload: uploadType === 'album' ? 3 : 2,
-    'track-details': uploadType === 'album' ? 4 : 3,
-    review: uploadType === 'album' ? 5 : 4
+    details: 2,
+    review: 3
   }[currentStep]
 
   const handleNext = async (step: Step) => {
-    if (step === 'upload' && uploadType === 'album' && !albumDetails.title) {
-      setCurrentStep('album-details')
-      return
-    }
-    
-    if (step === 'upload' && uploadType === 'album') {
-      // Create album first
+    if (step === 'review' && uploadType === 'album') {
+      // Upload album data and tracks
       const albumRes = await createAlbum(albumDetails)
       setAlbumId(albumRes.result.albumId)
       
-      // Upload artwork if exists
       if (albumDetails.artwork) {
         await uploadAlbumArtwork(albumRes.result.albumId, albumDetails.artwork)
       }
-    }
 
-    if (step === 'track-details') {
-      // Upload all files first
+      // Upload tracks in order
       const uploads = await Promise.all(
-        files.map(file => uploadTrack(file))
+        albumDetails.tracks.map(file => uploadTrack(file))
       )
-      // Store video IDs
-      setFiles(files.map((file, i) => ({
-        ...file,
-        videoId: uploads[i].videoId
-      })))
     }
     
     setCurrentStep(step)
@@ -70,40 +55,17 @@ export default function UploadPage() {
         <UploadChoice 
           onSelect={(type) => {
             setUploadType(type)
-            handleNext(type === 'album' ? 'album-details' : 'upload')
+            setCurrentStep('details')
           }}
         />
       )}
 
-      {currentStep === 'album-details' && (
+      {currentStep === 'details' && uploadType === 'album' && (
         <AlbumDetailsStep
           details={albumDetails}
           onChange={setAlbumDetails}
           onBack={() => setCurrentStep('choice')}
-          onNext={() => setCurrentStep('upload')}
-        />
-      )}
-
-      {currentStep === 'upload' && uploadType && (
-        <UploadStep
-          uploadType={uploadType}
-          albumDetails={uploadType === 'album' ? albumDetails : undefined}
-          onBack={() => setCurrentStep(uploadType === 'album' ? 'album-details' : 'choice')}
-          onComplete={(uploadedFiles) => {
-            setFiles(uploadedFiles)
-            setCurrentStep('track-details')
-          }}
-          onAlbumCreate={setAlbumId}
-        />
-      )}
-
-      {currentStep === 'track-details' && (
-        <TrackDetailsStep
-          files={files}
-          albumId={albumId}
-          albumDetails={uploadType === 'album' ? albumDetails : undefined}
-          onBack={() => setCurrentStep('upload')}
-          onComplete={() => setCurrentStep('review')}
+          onNext={() => setCurrentStep('review')}
         />
       )}
 
