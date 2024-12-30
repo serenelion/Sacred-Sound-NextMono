@@ -17,14 +17,17 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
   
   return (
     <div className={cn(
-      "fixed top-0 left-0 z-40 h-full w-[240px] flex-col bg-[#d9d9e7] transition-transform duration-200 ease-in-out",
-      isOpen ? "translate-x-0" : "-translate-x-[200px] hover:translate-x-0"
+      "fixed top-0 left-0 z-40 h-full w-[240px] flex-col bg-[#d9d9e7] transition-transform duration-300 ease-in-out",
+      isOpen ? "translate-x-0" : "-translate-x-[240px]"
     )}>
       <button 
         onClick={onToggle}
-        className="absolute top-4 right-4 z-50"
+        className="fixed top-6 left-6 z-50 bg-white/80 p-2 rounded-lg hover:bg-white/90 transition-colors"
+        style={{
+          transform: isOpen ? 'translateX(240px)' : 'translateX(0)'
+        }}
       >
-        <Menu className="h-6 w-6" />
+        <Menu className="h-5 w-5" />
       </button>
 
       <div className="flex items-center gap-2 p-4">

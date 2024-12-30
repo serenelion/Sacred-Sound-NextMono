@@ -14,8 +14,8 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         className={`
           flex-1 
           transition-all 
-          duration-200 
-          ${isSidebarOpen ? 'ml-[240px]' : 'ml-[40px]'}
+          duration-300 
+          ${isSidebarOpen ? 'ml-[240px]' : 'ml-0'}
         `}
       >
         <div className="max-w-[1200px] mx-auto p-6">
