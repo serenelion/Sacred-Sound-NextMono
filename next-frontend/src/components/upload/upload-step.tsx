@@ -39,7 +39,7 @@ export function UploadStep({ uploadType, onBack, onComplete }: UploadStepProps) 
       'audio/*': ['.mp3', '.wav', '.aiff', '.flac'],
       'video/*': ['.mp4', '.mov']
     },
-    maxSize: uploadType === 'album' ? 500 * 1024 * 1024 : 2 * 1024 * 1024 * 1024
+    maxSize: uploadType === 'album' ? 500 * 1024 * 1024 : 2 * 1024 * 1024
   })
 
   return (
