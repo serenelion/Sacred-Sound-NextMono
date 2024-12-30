@@ -1,5 +1,0 @@
-
-Host *.replit.dev
-    Port 22
-    IdentityFile %USERPROFILE%\.ssh\replit
-    StrictHostKeyChecking accept-new
