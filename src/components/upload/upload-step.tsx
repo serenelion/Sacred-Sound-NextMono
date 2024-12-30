@@ -1,11 +1,10 @@
 
 'use client'
 
-import { useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { Upload } from 'lucide-react'
-import { useUploadContext } from '@/contexts/upload-context'
+import { Card } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 
 interface UploadStepProps {
   onBack: () => void
@@ -13,54 +12,77 @@ interface UploadStepProps {
 }
 
 export function UploadStep({ onBack, onComplete }: UploadStepProps) {
-  const { addFiles, files, removeFile } = useUploadContext()
+  const [files, setFiles] = useState<File[]>([])
+  const [uploading, setUploading] = useState(false)
+  const [progress, setProgress] = useState(0)
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    addFiles(acceptedFiles)
-  }, [addFiles])
+  const handleUpload = async () => {
+    setUploading(true)
+    
+    for (const file of files) {
+      const formData = new FormData()
+      formData.append('file', file)
+      
+      try {
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        })
+        
+        if (!res.ok) throw new Error('Upload failed')
+        
+        setProgress((prev) => prev + (100 / files.length))
+      } catch (error) {
+        console.error('Upload error:', error)
+      }
+    }
+    
+    setUploading(false)
+    onComplete()
+  }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const handleFileDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    const droppedFiles = Array.from(e.dataTransfer.files)
+    setFiles(droppedFiles)
+  }
 
   return (
-    <div className="space-y-6">
-      <div 
-        {...getRootProps()} 
-        className={`border-2 border-dashed rounded-lg p-12 text-center cursor-pointer
-          ${isDragActive ? 'border-primary bg-primary/5' : 'border-border'}`}
+    <div className="space-y-4">
+      <Card
+        className="border-2 border-dashed p-6 text-center cursor-pointer"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleFileDrop}
       >
-        <input {...getInputProps()} />
-        <Upload className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-        <p className="text-muted-foreground">
-          Drag and drop files here, or click to select files
-        </p>
-      </div>
+        <div className="space-y-2">
+          <p>Drag and drop files or click to browse</p>
+          <input 
+            type="file"
+            multiple
+            onChange={(e) => setFiles(Array.from(e.target.files || []))}
+            className="hidden"
+          />
+        </div>
+      </Card>
 
       {files.length > 0 && (
         <div className="space-y-4">
-          {files.map(file => (
-            <div key={file.id} className="flex items-center justify-between p-4 border rounded-lg">
-              <span>{file.name}</span>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => removeFile(file.id)}
-              >
-                Remove
-              </Button>
-            </div>
-          ))}
+          <ul className="space-y-2">
+            {files.map((file) => (
+              <li key={file.name}>{file.name}</li>
+            ))}
+          </ul>
+
+          {uploading && <Progress value={progress} className="h-2" />}
+
+          <div className="flex justify-between">
+            <Button variant="outline" onClick={onBack}>Back</Button>
+            <Button onClick={handleUpload} disabled={uploading}>
+              {uploading ? 'Uploading...' : 'Continue'}  
+            </Button>
+          </div>
         </div>
       )}
-
-      <div className="flex justify-between">
-        <Button variant="ghost" onClick={onBack}>Back</Button>
-        <Button 
-          onClick={onComplete}
-          disabled={files.length === 0}
-        >
-          Continue
-        </Button>
-      </div>
     </div>
   )
 }
