@@ -1,3 +1,4 @@
+
 "use client"
 
 import { createContext, useContext, useEffect, useRef, useState } from "react"
@@ -18,11 +19,13 @@ interface PlayerContextType {
   isFullscreen: boolean
   currentTime: number
   duration: number
+  volume: number
   play: (track: Track) => void
   pause: () => void
   togglePlay: () => void
   toggleFullscreen: () => void
   seek: (time: number) => void
+  setVolume: (value: number) => void
   mediaRef: React.RefObject<HTMLAudioElement | HTMLVideoElement>
 }
 
@@ -34,25 +37,20 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [volume, setVolume] = useState(1)
   const mediaRef = useRef<HTMLAudioElement | HTMLVideoElement>(null)
 
   useEffect(() => {
     if (mediaRef.current) {
       const media = mediaRef.current
+      media.volume = volume
 
-      const handleTimeUpdate = () => {
-        setCurrentTime(media.currentTime)
-      }
-
-      const handleDurationChange = () => {
-        setDuration(media.duration)
-      }
-
+      const handleTimeUpdate = () => setCurrentTime(media.currentTime)
+      const handleDurationChange = () => setDuration(media.duration)
       const handleEnded = () => {
         setIsPlaying(false)
         setCurrentTime(0)
       }
-
       const handleError = (e: Event) => {
         console.error('Error loading media:', e)
         setIsPlaying(false)
@@ -70,7 +68,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
         media.removeEventListener('error', handleError)
       }
     }
-  }, [currentTrack])
+  }, [currentTrack, volume])
 
   const play = async (track: Track) => {
     if (currentTrack?.id === track.id) {
@@ -107,9 +105,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen)
-  }
+  const toggleFullscreen = () => setIsFullscreen(!isFullscreen)
 
   const seek = (time: number) => {
     if (mediaRef.current) {
@@ -126,11 +122,13 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
         isFullscreen,
         currentTime,
         duration,
+        volume,
         play,
         pause,
         togglePlay,
         toggleFullscreen,
         seek,
+        setVolume,
         mediaRef,
       }}
     >
@@ -146,4 +144,3 @@ export function usePlayer() {
   }
   return context
 }
-
