@@ -156,8 +156,8 @@ export function ArtistSignupForm() {
         throw new Error('Authentication token missing from response')
       }
 
-      // Store token and update auth context
-      login(response.data.accessToken)
+      // Store token and update auth context with isArtist flag
+      login(response.data.accessToken, true)
       
       toast.success('Welcome to Sacred Sound! Redirecting to your dashboard...')
       
