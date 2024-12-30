@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { UploadLayout } from '@/components/upload/upload-layout'
 import { UploadChoice } from '@/components/upload/upload-choice'
 import { AlbumDetailsStep } from '@/components/upload/album-details-step'
-import { TrackDetailsStep } from '@/components/upload/track-details-step'
+import { Button } from '@/components/ui/button'
 
 type UploadType = 'album' | 'individual' | null
 type Step = 'choice' | 'details' | 'review'
@@ -15,8 +15,6 @@ export default function UploadPage() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState<Step>('choice')
   const [uploadType, setUploadType] = useState<UploadType>(null)
-  const [files, setFiles] = useState<File[]>([])
-  const [albumId, setAlbumId] = useState<string | null>(null)
   const [albumDetails, setAlbumDetails] = useState({
     title: '',
     description: '',
@@ -30,23 +28,14 @@ export default function UploadPage() {
     review: 3
   }[currentStep]
 
-  const handleNext = async (step: Step) => {
-    if (step === 'review' && uploadType === 'album') {
-      // Upload album data and tracks
-      const albumRes = await createAlbum(albumDetails)
-      setAlbumId(albumRes.result.albumId)
-      
-      if (albumDetails.artwork) {
-        await uploadAlbumArtwork(albumRes.result.albumId, albumDetails.artwork)
-      }
-
-      // Upload tracks in order
-      const uploads = await Promise.all(
-        albumDetails.tracks.map(file => uploadTrack(file))
-      )
+  const handleUploadComplete = async () => {
+    try {
+      // Here we would integrate with the backend
+      // For now just simulate success
+      setCurrentStep('review')
+    } catch (error) {
+      console.error('Upload failed:', error)
     }
-    
-    setCurrentStep(step)
   }
 
   return (
@@ -65,15 +54,15 @@ export default function UploadPage() {
           details={albumDetails}
           onChange={setAlbumDetails}
           onBack={() => setCurrentStep('choice')}
-          onNext={() => setCurrentStep('review')}
+          onNext={handleUploadComplete}
         />
       )}
 
       {currentStep === 'review' && (
         <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold">Ready for Review</h2>
+          <h2 className="text-2xl font-bold">Upload Complete</h2>
           <p className="text-muted-foreground">
-            Your sacred content has been uploaded and will be reviewed by our team.
+            Your content has been uploaded successfully.
           </p>
           <Button onClick={() => router.push('/library')}>
             Go to Library

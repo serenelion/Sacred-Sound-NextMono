@@ -47,7 +47,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
 
   const handleDragEnd = (result: any) => {
     if (!result.destination) return
-    
+
     const tracks = Array.from(details.tracks)
     const [reorderedTrack] = tracks.splice(result.source.index, 1)
     tracks.splice(result.destination.index, 0, reorderedTrack)
@@ -71,6 +71,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
             error={errors.title}
             placeholder="Give your album a meaningful title"
           />
+          {errors.title && <p className="text-sm text-red-500 mt-1">{errors.title}</p>}
         </div>
 
         <div>
@@ -78,7 +79,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
           <Input
             value={details.description}
             onChange={(e) => onChange({ ...details, description: e.target.value })}
-            placeholder="Describe the spiritual journey or story behind this collection"
+            placeholder="Describe your album"
           />
         </div>
 
@@ -114,11 +115,11 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
         </div>
 
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="tracks" isDropDisabled={false}>
+          <Droppable droppableId="tracks" isCombineEnabled={false}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
                 {details.tracks.map((file, index) => (
-                  <Draggable key={file.name} draggableId={file.name} index={index} isDragDisabled={false}>
+                  <Draggable key={file.name} draggableId={file.name} index={index}>
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
