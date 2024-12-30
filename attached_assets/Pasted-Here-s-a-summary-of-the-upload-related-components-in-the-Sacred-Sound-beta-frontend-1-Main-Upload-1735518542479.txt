@@ -1,0 +1,103 @@
+Here's a summary of the upload-related components in the Sacred Sound beta frontend:
+
+1. Main Upload Page (`app/upload/page.tsx`)
+
+
+- Entry point for the upload flow
+- Simple container component
+- Renders the UploadChoice component
+- Handles layout and spacing
+
+
+2. Upload Choice Component (`components/upload/upload-choice.tsx`)
+
+
+- Initial selection interface for upload type
+- Two options: Album or Individual Content
+- Uses Card components for selection
+- State management for upload type selection
+- Renders ContentUpload when type is selected
+
+
+3. Content Upload Component (`components/upload/content-upload.tsx`)
+
+
+- Main orchestrator for the upload process
+- Manages file selection and upload state
+- Handles album details if uploading as album
+- Two-step process: upload and details
+- Integrates with:
+
+- Technical Requirements
+- File dropzone
+- Content list
+- QA process information
+- Track details form
+
+
+
+
+
+4. Track Details Step (`components/upload/track-details-step.tsx`)
+
+
+- Complex form for metadata input
+- Handles multiple tracks
+- Fields include:
+
+- Title, description
+- Category selection
+- Genre (multi-select)
+- Featured instruments
+- Primary instrument
+- Language selection
+- Deity selection
+- Tradition selection
+- Vocal type configuration
+
+
+
+- Progress tracking for multiple tracks
+- Navigation between tracks
+
+
+5. Supporting Components:
+
+
+a. `technical-requirements.tsx`
+
+- Displays technical specifications
+- Audio requirements (WAV, FLAC, AIFF)
+- Video requirements (MP4)
+- Quality standards
+
+
+b. `content-list.tsx`
+
+- Displays selected files
+- Drag-and-drop reordering
+- File type icons
+- Size information
+- Remove functionality
+
+
+c. `qa-process.tsx`
+
+- Information about quality assurance
+- Three-step process display
+- Technical review
+- Content curation
+- Metadata verification
+
+
+Key Features:
+
+- Drag and drop file upload
+- Multiple file handling
+- Album creation support
+- Extensive metadata options
+- Progress tracking
+- File reordering
+- Quality assurance information
+- Technical requirements display
+- Cover image upload support
