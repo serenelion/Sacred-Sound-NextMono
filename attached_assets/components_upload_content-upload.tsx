@@ -22,11 +22,28 @@ export function ContentUpload({ uploadType, onBack }: ContentUploadProps) {
   const [albumDetails, setAlbumDetails] = useState({
     title: '',
     description: '',
-    releaseDate: ''
+    releaseDate: '',
+    coverImage: null as File | null
   })
   const [files, setFiles] = useState<any[]>([])
   const [error, setError] = useState<string | null>(null)
-  const [step, setStep] = useState<'upload' | 'details'>('upload')
+  const [step, setStep] = useState<'albumDetails' | 'upload' | 'details'>(uploadType === 'album' ? 'albumDetails' : 'upload')
+
+  const handleContinue = () => {
+    if (step === 'albumDetails') {
+      if (!albumDetails.title || !albumDetails.description) {
+        setError('Please fill in all required album details')
+        return
+      }
+      setStep('upload')
+    } else if (step === 'upload') {
+      if (files.length === 0) {
+        setError('Please upload at least one file')
+        return
+      }
+      setStep('details')
+    }
+  }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -48,7 +65,63 @@ export function ContentUpload({ uploadType, onBack }: ContentUploadProps) {
 
   return (
     <div className="space-y-8">
-      {step === 'upload' ? (
+      {step === 'albumDetails' ? (
+        <>
+          <Button variant="ghost" onClick={onBack} className="mb-4">
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Choose Different Upload Type
+          </Button>
+
+          <Card>
+            <CardContent className="p-6 space-y-4">
+              <h2 className="text-xl font-semibold">Album Details</h2>
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="album-title">Album Title *</Label>
+                  <Input
+                    id="album-title"
+                    placeholder="Give your album a meaningful title"
+                    value={albumDetails.title}
+                    onChange={e => setAlbumDetails(prev => ({
+                      ...prev,
+                      title: e.target.value
+                    }))}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="album-description">Description *</Label>
+                  <Textarea
+                    id="album-description"
+                    placeholder="Describe the spiritual journey or story behind this collection"
+                    value={albumDetails.description}
+                    onChange={e => setAlbumDetails(prev => ({
+                      ...prev,
+                      description: e.target.value
+                    }))}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="release-date">Release Date</Label>
+                  <Input
+                    id="release-date"
+                    type="date"
+                    value={albumDetails.releaseDate}
+                    onChange={e => setAlbumDetails(prev => ({
+                      ...prev,
+                      releaseDate: e.target.value
+                    }))}
+                  />
+                </div>
+              </div>
+              <div className="pt-4">
+                <Button onClick={handleContinue} size="lg" className="min-w-[200px]">
+                  Continue to Upload
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </>
+      ) : step === 'upload' ? (
         <>
           <Button variant="ghost" onClick={onBack} className="mb-4">
             <ChevronLeft className="mr-2 h-4 w-4" />
