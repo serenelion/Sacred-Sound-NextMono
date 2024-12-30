@@ -115,7 +115,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
         </div>
 
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="tracks" isCombineEnabled={false}>
+          <Droppable droppableId="tracks">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
                 {details.tracks.map((file, index) => (
