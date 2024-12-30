@@ -41,13 +41,20 @@ export function UploadProvider({ children }: { children: React.ReactNode }) {
   })
 
   const addFiles = (newFiles: File[]) => {
-    const uploadedFiles = newFiles.map(file => ({
-      id: crypto.randomUUID(),
-      file,
-      progress: 0,
-      status: 'pending' as UploadStatus
-    }))
-    setFiles(prev => [...prev, ...uploadedFiles])
+    if (uploadType === 'album') {
+      setAlbumDetails(prev => ({
+        ...prev,
+        tracks: [...prev.tracks, ...newFiles]
+      }))
+    } else {
+      const uploadedFiles = newFiles.map(file => ({
+        id: crypto.randomUUID(),
+        file,
+        progress: 0,
+        status: 'pending' as UploadStatus
+      }))
+      setFiles(prev => [...prev, ...uploadedFiles])
+    }
   }
 
   const removeFile = (id: string) => {
