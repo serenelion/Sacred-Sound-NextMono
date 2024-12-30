@@ -43,7 +43,7 @@ export default function UploadPage() {
         {currentStep === 'review' && (
           <div className="text-center space-y-4">
             <h2 className="text-2xl font-bold">Upload Complete!</h2>
-            <p className="text-muted-foreground">Your content is ready!</p>
+            <p className="text-muted-foreground">Your content will be reviewed shortly.</p>
           </div>
         )}
       </UploadLayout>

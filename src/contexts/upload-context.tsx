@@ -1,81 +1,76 @@
 
 'use client'
 
-import { createContext, useContext, ReactNode, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
-export type UploadType = 'album' | 'individual' | null
+type UploadType = 'album' | 'individual' | null
+type UploadStatus = 'pending' | 'uploading' | 'complete' | 'error'
 
-interface UploadFile {
+interface UploadedFile {
   id: string
   file: File
-  name: string
   progress: number
-  status: 'pending' | 'uploading' | 'complete' | 'error'
+  status: UploadStatus
 }
 
 interface AlbumDetails {
   title: string
   description: string
   artwork: File | null
-  tracks: string[]
 }
 
 interface UploadContextType {
   uploadType: UploadType
   setUploadType: (type: UploadType) => void
-  files: UploadFile[]
+  files: UploadedFile[]
   addFiles: (newFiles: File[]) => void
-  removeFile: (index: number) => void
+  removeFile: (id: string) => void
   albumDetails: AlbumDetails
   setAlbumDetails: (details: AlbumDetails) => void
 }
 
 const UploadContext = createContext<UploadContextType | undefined>(undefined)
 
-export function UploadProvider({ children }: { children: ReactNode }) {
+export function UploadProvider({ children }: { children: React.ReactNode }) {
   const [uploadType, setUploadType] = useState<UploadType>(null)
-  const [files, setFiles] = useState<UploadFile[]>([])
+  const [files, setFiles] = useState<UploadedFile[]>([])
   const [albumDetails, setAlbumDetails] = useState<AlbumDetails>({
     title: '',
     description: '',
-    artwork: null,
-    tracks: []
+    artwork: null
   })
 
   const addFiles = (newFiles: File[]) => {
     const uploadedFiles = newFiles.map(file => ({
-      file,
       id: crypto.randomUUID(),
-      name: file.name,
+      file,
       progress: 0,
-      status: 'pending' as const
+      status: 'pending' as UploadStatus
     }))
     setFiles(prev => [...prev, ...uploadedFiles])
   }
 
-  const removeFile = (index: number) => {
-    setFiles(prev => prev.filter((_, i) => i !== index))
+  const removeFile = (id: string) => {
+    setFiles(prev => prev.filter(file => file.id !== id))
   }
 
   return (
     <UploadContext.Provider value={{
       uploadType,
       setUploadType,
-      albumDetails,
-      setAlbumDetails,
       files,
       addFiles,
-      removeFile
+      removeFile,
+      albumDetails,
+      setAlbumDetails
     }}>
       {children}
     </UploadContext.Provider>
   )
 }
 
-export function useUploadContext() {
+export function useUpload() {
   const context = useContext(UploadContext)
-  if (!context) {
-    throw new Error('useUploadContext must be used within an UploadProvider')
-  }
+  if (!context) throw new Error('useUpload must be used within UploadProvider')
   return context
 }
