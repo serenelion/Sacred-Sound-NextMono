@@ -32,12 +32,36 @@ export default function UploadPage() {
     review: uploadType === 'album' ? 5 : 4
   }[currentStep]
 
-  const handleNext = (step: Step) => {
+  const handleNext = async (step: Step) => {
     if (step === 'upload' && uploadType === 'album' && !albumDetails.title) {
       setCurrentStep('album-details')
-    } else {
-      setCurrentStep(step)
+      return
     }
+    
+    if (step === 'upload' && uploadType === 'album') {
+      // Create album first
+      const albumRes = await createAlbum(albumDetails)
+      setAlbumId(albumRes.result.albumId)
+      
+      // Upload artwork if exists
+      if (albumDetails.artwork) {
+        await uploadAlbumArtwork(albumRes.result.albumId, albumDetails.artwork)
+      }
+    }
+
+    if (step === 'track-details') {
+      // Upload all files first
+      const uploads = await Promise.all(
+        files.map(file => uploadTrack(file))
+      )
+      // Store video IDs
+      setFiles(files.map((file, i) => ({
+        ...file,
+        videoId: uploads[i].videoId
+      })))
+    }
+    
+    setCurrentStep(step)
   }
 
   return (
