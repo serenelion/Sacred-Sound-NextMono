@@ -12,9 +12,10 @@ interface ContentListProps {
   files: UploadedFile[]
   onRemove: (id: string) => void
   onReorder: (files: UploadedFile[]) => void
+  isDisabled?: boolean
 }
 
-export function ContentList({ files, onRemove, onReorder }: ContentListProps) {
+export function ContentList({ files, onRemove, onReorder, isDisabled = false }: ContentListProps) {
   const handleDragEnd = (result: any) => {
     if (!result.destination) return
 
@@ -27,19 +28,19 @@ export function ContentList({ files, onRemove, onReorder }: ContentListProps) {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="tracks">
+      <Droppable droppableId="tracks" isDropDisabled={isDisabled}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
             {files.map((file, index) => (
-              <Draggable key={file.id} draggableId={file.id} index={index}>
+              <Draggable key={file.id} draggableId={file.id} index={index} isDragDisabled={isDisabled}>
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    className="flex items-center space-x-4 p-4 border rounded-lg"
+                    className="flex items-center space-x-4 p-4 border rounded-lg bg-background"
                   >
                     <div {...provided.dragHandleProps}>
-                      <GripVertical className="h-4 w-4 text-gray-400" />
+                      <GripVertical className="h-4 w-4 text-muted-foreground" />
                     </div>
                     <FileText className="h-6 w-6 text-muted-foreground" />
                     <div className="flex-1 min-w-0">
@@ -50,6 +51,7 @@ export function ContentList({ files, onRemove, onReorder }: ContentListProps) {
                       variant="ghost"
                       size="icon"
                       onClick={() => onRemove(file.id)}
+                      disabled={isDisabled}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
