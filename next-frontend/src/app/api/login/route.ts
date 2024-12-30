@@ -14,7 +14,7 @@ const JWT_SECRET = new TextEncoder().encode(
 export async function POST(req: Request) {
   try {
     const body = await req.json() as LoginRequest;
-    
+
     if (!body.email || !body.password) {
       return NextResponse.json(
         { success: false, message: 'Email and password are required' },
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       message: 'Login successful',
       token
     });
-    
+
   } catch (error: any) {
     console.error('Login error:', error);
     return NextResponse.json(
