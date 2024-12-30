@@ -2,22 +2,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
-
-type UploadType = 'album' | 'individual' | null
-type UploadStatus = 'pending' | 'uploading' | 'complete' | 'error'
-
-interface UploadedFile {
-  id: string
-  file: File
-  progress: number
-  status: UploadStatus
-}
-
-interface AlbumDetails {
-  title: string
-  description: string
-  artwork: File | null
-}
+import { UploadType, AlbumDetails, UploadedFile } from '@/types/upload'
 
 interface UploadContextType {
   uploadType: UploadType
@@ -26,7 +11,7 @@ interface UploadContextType {
   addFiles: (newFiles: File[]) => void
   removeFile: (id: string) => void
   albumDetails: AlbumDetails
-  setAlbumDetails: (details: AlbumDetails) => void
+  setAlbumDetails: React.Dispatch<React.SetStateAction<AlbumDetails>>
 }
 
 const UploadContext = createContext<UploadContextType | undefined>(undefined)
@@ -37,7 +22,8 @@ export function UploadProvider({ children }: { children: React.ReactNode }) {
   const [albumDetails, setAlbumDetails] = useState<AlbumDetails>({
     title: '',
     description: '',
-    artwork: null
+    artwork: null,
+    tracks: []
   })
 
   const addFiles = (newFiles: File[]) => {
@@ -51,7 +37,7 @@ export function UploadProvider({ children }: { children: React.ReactNode }) {
         id: crypto.randomUUID(),
         file,
         progress: 0,
-        status: 'pending' as UploadStatus
+        status: 'pending' as const
       }))
       setFiles(prev => [...prev, ...uploadedFiles])
     }

@@ -4,17 +4,16 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Album, FileMusic } from "lucide-react"
+import { useUpload } from '@/contexts/upload-context'
 
-interface UploadChoiceProps {
-  onSelect: (type: 'album' | 'individual') => void
-}
+export function UploadChoice() {
+  const { setUploadType } = useUpload()
 
-export function UploadChoice({ onSelect }: UploadChoiceProps) {
   return (
     <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto p-6">
       <Card 
         className="p-6 cursor-pointer hover:border-primary transition-colors"
-        onClick={() => onSelect('album')}
+        onClick={() => setUploadType('album')}
       >
         <div className="flex flex-col items-center gap-4 text-center">
           <Album className="w-12 h-12" />
@@ -25,7 +24,7 @@ export function UploadChoice({ onSelect }: UploadChoiceProps) {
 
       <Card 
         className="p-6 cursor-pointer hover:border-primary transition-colors"
-        onClick={() => onSelect('individual')}
+        onClick={() => setUploadType('individual')}
       >
         <div className="flex flex-col items-center gap-4 text-center">
           <FileMusic className="w-12 h-12" />
