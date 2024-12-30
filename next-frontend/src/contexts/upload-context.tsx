@@ -2,22 +2,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
-
-type UploadType = 'album' | 'individual' | null
-type UploadStatus = 'pending' | 'uploading' | 'complete' | 'error'
-
-interface UploadedFile {
-  id: string
-  file: File
-  progress: number
-  status: UploadStatus
-}
-
-interface AlbumDetails {
-  title: string
-  description: string
-  artwork: File | null
-}
+import { UploadType, UploadStatus, AlbumDetails, UploadedFile } from '@/types/upload'
 
 interface UploadContextType {
   uploadType: UploadType
@@ -37,7 +22,8 @@ export function UploadProvider({ children }: { children: React.ReactNode }) {
   const [albumDetails, setAlbumDetails] = useState<AlbumDetails>({
     title: '',
     description: '',
-    artwork: null
+    artwork: null,
+    tracks: []
   })
 
   const addFiles = (newFiles: File[]) => {

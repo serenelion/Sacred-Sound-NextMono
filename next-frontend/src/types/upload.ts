@@ -1,11 +1,20 @@
 
 export type UploadType = 'album' | 'individual' | null
+export type UploadStatus = 'pending' | 'uploading' | 'complete' | 'error'
 
 export interface VocalTypes {
   male: boolean
   female: boolean
   choir: boolean
   circle: boolean
+}
+
+export interface UploadedFile {
+  id: string
+  file: File
+  progress: number
+  status: UploadStatus
+  metadata?: TrackMetadata
 }
 
 export interface TrackMetadata {
@@ -22,17 +31,9 @@ export interface TrackMetadata {
   vocalTypes: VocalTypes
 }
 
-export interface UploadedFile {
-  id: string
-  file: File
-  progress: number
-  status: 'pending' | 'uploading' | 'completed' | 'error'
-  metadata?: TrackMetadata
-}
-
 export interface AlbumDetails {
   title: string
   description: string
   artwork: File | null
-  tracks: UploadedFile[]
+  tracks: File[]
 }
