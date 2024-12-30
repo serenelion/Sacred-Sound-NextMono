@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sidebar } from './sidebar'
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
