@@ -1,29 +1,37 @@
-import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+
+'use client'
+
+import { Card } from '@/components/ui/card'
+import { FileAudio, FileVideo, Info } from 'lucide-react'
 
 export function TechnicalRequirements() {
-  const [isExpanded, setIsExpanded] = useState(false)
-
   return (
-    <div className="bg-secondary/20 rounded-lg p-6 space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold">Technical Requirements</h2>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="text-muted-foreground"
-        >
-          {isExpanded ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
-        </Button>
+    <Card className="p-6 bg-muted/50">
+      <div className="flex items-start gap-4">
+        <Info className="w-5 h-5 mt-1 text-muted-foreground" />
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-medium mb-2">Supported Formats</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="flex items-center gap-2">
+                <FileAudio className="w-4 h-4" />
+                <span className="text-sm">Audio: WAV, FLAC, MP3, AIFF</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FileVideo className="w-4 h-4" />
+                <span className="text-sm">Video: MP4, MOV</span>
+              </div>
+            </div>
+          </div>
+          <div className="text-sm text-muted-foreground">
+            <p>Maximum file sizes:</p>
+            <ul className="list-disc list-inside ml-2">
+              <li>Albums: 500MB per track</li>
+              <li>Individual tracks: 2GB</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div className={`space-y-4 transition-all ${isExpanded ? 'block' : 'hidden'}`}>
-      </div>
-    </div>
+    </Card>
   )
 }

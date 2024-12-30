@@ -3,7 +3,8 @@
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Album, FileAudio2 } from 'lucide-react'
+import { Album, FileAudio2, Info } from 'lucide-react'
+import { TechnicalRequirements } from './technical-requirements'
 
 interface UploadChoiceProps {
   onSelect: (type: 'album' | 'individual') => void
@@ -11,8 +12,12 @@ interface UploadChoiceProps {
 
 export function UploadChoice({ onSelect }: UploadChoiceProps) {
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Share Your Sacred Sound</h1>
+    <div className="space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold">Share Your Sacred Sound</h1>
+        <p className="text-muted-foreground">Choose how you'd like to share your spiritual content with the community.</p>
+      </div>
+      
       <div className="grid gap-6 md:grid-cols-2">
         <Card 
           className="cursor-pointer hover:border-primary transition-colors group relative" 
@@ -25,8 +30,7 @@ export function UploadChoice({ onSelect }: UploadChoiceProps) {
             </div>
             <CardTitle>Create an Album</CardTitle>
             <CardDescription>
-              Upload multiple tracks as a cohesive collection. Perfect for concert recordings,
-              workshop series, or themed content collections.
+              Perfect for concert recordings, workshop series, or themed collections. Upload multiple tracks as a cohesive journey.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -47,8 +51,7 @@ export function UploadChoice({ onSelect }: UploadChoiceProps) {
             </div>
             <CardTitle>Share Individual Track</CardTitle>
             <CardDescription>
-              Upload single tracks like mantras, bhajans, or meditation guides. Each piece will be 
-              carefully reviewed to ensure the highest quality.
+              Share a single mantra, bhajan, or meditation guide. Each piece will be carefully curated to ensure the highest quality.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -58,6 +61,8 @@ export function UploadChoice({ onSelect }: UploadChoiceProps) {
           </CardContent>
         </Card>
       </div>
+
+      <TechnicalRequirements />
     </div>
   )
 }
