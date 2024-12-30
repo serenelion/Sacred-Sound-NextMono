@@ -6,10 +6,11 @@ import { useRouter } from 'next/navigation'
 import { UploadLayout } from '@/components/upload/upload-layout'
 import { UploadChoice } from '@/components/upload/upload-choice'
 import { UploadStep } from '@/components/upload/upload-step'
+import { AlbumDetailsStep } from '@/components/upload/album-details-step'
 import { TrackDetailsStep } from '@/components/upload/track-details-step'
 
 type UploadType = 'album' | 'individual' | null
-type Step = 'choice' | 'upload' | 'details' | 'review'
+type Step = 'choice' | 'album-details' | 'upload' | 'track-details' | 'review'
 
 export default function UploadPage() {
   const router = useRouter()
@@ -17,13 +18,27 @@ export default function UploadPage() {
   const [uploadType, setUploadType] = useState<UploadType>(null)
   const [files, setFiles] = useState<File[]>([])
   const [albumId, setAlbumId] = useState<string | null>(null)
+  const [albumDetails, setAlbumDetails] = useState({
+    title: '',
+    description: '',
+    artwork: null as File | null
+  })
 
   const stepNumber = {
     choice: 1,
-    upload: 2,
-    details: 3,
-    review: 4
+    'album-details': 2,
+    upload: uploadType === 'album' ? 3 : 2,
+    'track-details': uploadType === 'album' ? 4 : 3,
+    review: uploadType === 'album' ? 5 : 4
   }[currentStep]
+
+  const handleNext = (step: Step) => {
+    if (step === 'upload' && uploadType === 'album' && !albumDetails.title) {
+      setCurrentStep('album-details')
+    } else {
+      setCurrentStep(step)
+    }
+  }
 
   return (
     <UploadLayout step={stepNumber} onClose={() => router.push('/')}>
@@ -31,27 +46,38 @@ export default function UploadPage() {
         <UploadChoice 
           onSelect={(type) => {
             setUploadType(type)
-            setCurrentStep('upload')
+            handleNext(type === 'album' ? 'album-details' : 'upload')
           }}
+        />
+      )}
+
+      {currentStep === 'album-details' && (
+        <AlbumDetailsStep
+          details={albumDetails}
+          onChange={setAlbumDetails}
+          onBack={() => setCurrentStep('choice')}
+          onNext={() => setCurrentStep('upload')}
         />
       )}
 
       {currentStep === 'upload' && uploadType && (
         <UploadStep
           uploadType={uploadType}
-          onBack={() => setCurrentStep('choice')}
+          albumDetails={uploadType === 'album' ? albumDetails : undefined}
+          onBack={() => setCurrentStep(uploadType === 'album' ? 'album-details' : 'choice')}
           onComplete={(uploadedFiles) => {
             setFiles(uploadedFiles)
-            setCurrentStep('details')
+            setCurrentStep('track-details')
           }}
           onAlbumCreate={setAlbumId}
         />
       )}
 
-      {currentStep === 'details' && (
+      {currentStep === 'track-details' && (
         <TrackDetailsStep
           files={files}
           albumId={albumId}
+          albumDetails={uploadType === 'album' ? albumDetails : undefined}
           onBack={() => setCurrentStep('upload')}
           onComplete={() => setCurrentStep('review')}
         />
@@ -62,7 +88,6 @@ export default function UploadPage() {
           <h2 className="text-2xl font-bold">Ready for Review</h2>
           <p className="text-muted-foreground">
             Your sacred content has been uploaded and will be reviewed by our team.
-            We'll notify you once it's approved and available in the library.
           </p>
           <Button onClick={() => router.push('/library')}>
             Go to Library
