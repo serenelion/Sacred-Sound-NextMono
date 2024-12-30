@@ -43,7 +43,7 @@ export function LibraryPage() {
         <Sidebar />
       </div>
       
-      <main className="w-full p-6 pb-24 md:pb-6 overflow-y-auto"> {/*flex-1 ensures it takes remaining space*/}
+      <main className="flex-1 p-6 pb-24 md:pb-6 overflow-y-auto"> {/*flex-1 ensures it takes remaining space*/}
         <section className="mb-8">
           <SwipeComponent title="New Releases">
             {newReleases.map((item) => (
