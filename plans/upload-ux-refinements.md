@@ -1,57 +1,86 @@
 
 # Sacred Sound Upload UX Refinements
 
-## Current Pain Points
-1. Complex multi-step process may overwhelm users
-2. Technical requirements presented too early
-3. Limited visual feedback during uploads
-4. Metadata form complexity
+## Current Issues
+1. react-beautiful-dnd integration errors
+2. Complex state management across components
+3. Inconsistent error handling
+4. Limited upload progress feedback
+5. Missing mobile responsiveness optimizations
 
 ## Development Phases
 
-### Phase 1: Entry Flow Optimization
-- Simplify UploadChoice cards with clear iconography
-- Add preview tooltips for each choice
-- Implement progressive disclosure of technical requirements
-- Add "Getting Started" guide modal
+### Phase 1: Technical Debt & Bug Fixes
+- Fix react-beautiful-dnd implementation
+  - Update Droppable/Draggable props
+  - Implement proper type checking
+  - Add drag handle accessibility
+- Refactor state management
+  - Move shared state to context
+  - Implement proper TypeScript types
+  - Add error boundaries
 
-### Phase 2: Upload Experience
-- Add file type validation before upload
-- Implement chunked uploads with pause/resume
-- Add visual upload progress with estimated time
-- Provide real-time feedback on file requirements
+### Phase 2: Core Upload Experience
+- Enhance file handling
+  - Add chunked upload support
+  - Implement retry mechanism
+  - Add file type validation
+- Improve progress tracking
+  - Add detailed progress bars
+  - Show upload speed
+  - Display time remaining
+- Implement proper error handling
+  - Add toast notifications
+  - Show validation errors
+  - Provide recovery options
 
-### Phase 3: Metadata Collection
-- Break down TrackDetailsStep into smaller sub-forms
-- Add progress indicator for metadata completion
-- Implement smart defaults based on file analysis
-- Add preview capability for entered metadata
+### Phase 3: UI/UX Improvements
+- Mobile optimization
+  - Add touch-friendly drag & drop
+  - Optimize forms for small screens
+  - Improve gesture support
+- Visual feedback
+  - Add loading states
+  - Improve progress indicators
+  - Add success animations
+- Form improvements
+  - Add auto-save functionality
+  - Implement smart defaults
+  - Add keyboard shortcuts
 
-### Phase 4: Final Review & Publishing
-- Add comprehensive review step
-- Implement save as draft functionality
-- Add batch metadata editing for albums
-- Provide upload success celebration
+### Phase 4: Performance & Optimization
+- Implement lazy loading
+- Add file compression
+- Optimize bundle size
+- Add caching strategies
 
 ## Implementation Priority
 
-1. High Impact, Low Effort
-- Add visual progress indicators
-- Implement file validation
-- Simplify initial choice UI
+1. Critical (Week 1)
+- Fix drag and drop issues
+- Implement proper error handling
+- Add mobile responsiveness
 
-2. High Impact, High Effort
-- Chunked upload system
-- Metadata form redesign
-- Preview functionality
+2. High Impact (Week 2)
+- Enhance upload progress UI
+- Improve form validation
+- Add auto-save functionality
 
-3. Nice to Have
-- Draft saving
-- Batch editing
-- Success celebrations
+3. Polish (Week 3)
+- Add success animations
+- Implement keyboard shortcuts
+- Enhance accessibility
 
 ## Success Metrics
-- Reduced upload abandonment rate
-- Decreased time to complete metadata
-- Improved metadata quality
-- Higher successful upload rate
+- Zero drag and drop errors
+- <2s response time for all interactions
+- 99% upload success rate
+- 50% reduction in form completion time
+- 90% mobile satisfaction rating
+
+## Technical Requirements
+- Next.js 14+
+- TypeScript strict mode
+- React Beautiful DnD v13
+- Proper error boundaries
+- Mobile-first approach
