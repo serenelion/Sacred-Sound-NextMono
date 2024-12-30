@@ -1,7 +1,7 @@
 
 'use client'
 
-import { UploadProvider } from '@/contexts/upload-context'
+import { UploadProvider } from '../../contexts/upload-context'
 import { UploadLayout } from '@/components/upload/upload-layout'
 import { UploadChoice } from '@/components/upload/upload-choice'
 import { UploadStep } from '@/components/upload/upload-step'
