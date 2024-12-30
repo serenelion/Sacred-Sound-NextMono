@@ -8,16 +8,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card } from "@/components/ui/card"
 import { ImageUpload } from "@/components/ui/image-upload"
-import { Music2, Upload, GripVertical } from 'lucide-react'
+import { Music2, Upload, GripVertical, X } from 'lucide-react'
+import { AlbumDetails } from '@/app/types'
 
 interface AlbumDetailsStepProps {
-  details: {
-    title: string
-    description: string
-    artwork: File | null
-    tracks: File[]
-  }
-  onChange: (details: any) => void
+  details: AlbumDetails
+  onChange: (details: AlbumDetails) => void
   onBack: () => void
   onNext: () => void
 }
@@ -49,7 +45,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
     }
   }
 
-  const handleTrackReorder = (result: any) => {
+  const handleDragEnd = (result: any) => {
     if (!result.destination) return
     
     const tracks = Array.from(details.tracks)
@@ -73,6 +69,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
             value={details.title}
             onChange={(e) => onChange({ ...details, title: e.target.value })}
             error={errors.title}
+            placeholder="Give your album a meaningful title"
           />
         </div>
 
@@ -81,6 +78,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
           <Input
             value={details.description}
             onChange={(e) => onChange({ ...details, description: e.target.value })}
+            placeholder="Describe the spiritual journey or story behind this collection"
           />
         </div>
 
@@ -94,7 +92,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
         </div>
 
         <div>
-          <Label>Tracks</Label>
+          <Label>Upload Tracks</Label>
           <div 
             className="border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition-colors"
             onDrop={handleFileDrop}
@@ -115,7 +113,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
           {errors.tracks && <p className="text-sm text-red-500 mt-1">{errors.tracks}</p>}
         </div>
 
-        <DragDropContext onDragEnd={handleTrackReorder}>
+        <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="tracks">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
@@ -139,7 +137,7 @@ export function AlbumDetailsStep({ details, onChange, onBack, onNext }: AlbumDet
                           size="sm"
                           onClick={() => removeTrack(index)}
                         >
-                          Remove
+                          <X className="h-4 w-4" />
                         </Button>
                       </div>
                     )}
