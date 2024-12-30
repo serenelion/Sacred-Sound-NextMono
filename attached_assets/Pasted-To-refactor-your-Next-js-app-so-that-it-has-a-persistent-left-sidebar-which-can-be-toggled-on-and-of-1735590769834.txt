@@ -1,0 +1,64 @@
+To refactor your Next.js app so that it has a persistent left sidebar which can be toggled on and off with a hamburger icon, you can follow these steps:
+
+Structure Overview
+Sidebar Component: Use the existing Sidebar component located in next-frontend/src/components/sidebar.tsx.
+Hamburger Icon: Implement a hamburger icon in a separate component that controls the toggling state of the sidebar.
+Mobile Nav: Since you would be removing the MobileNav component located in next-frontend/src/components/mobile-nav.tsx, the mobile navigation functionality should be integrated into the sidebar.
+Player Component: Integrate your player component alongside the sidebar to ensure clarity and coherence.
+Steps and Code Implementation
+Remove the Mobile Navigation: You can delete the mobile-nav.tsx file since you plan to consolidate the navigation.
+
+Create a New Layout Component that includes the sidebar and handles the toggle logic.
+
+Example of a MainLayout.tsx
+Create a new file next-frontend/src/components/MainLayout.tsx:
+
+import { useState } from 'react';
+import { Sidebar } from './sidebar'; // Import the sidebar component
+import { Button } from "@/components/ui/button"; // Adjust the import path as needed
+import { cn } from "@/lib/utils"; // Adjust the import path if necessary
+export function MainLayout({ children }: { children: React.ReactNode }) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  return (
+    <div className="flex">
+      <Sidebar className={cn("transition-transform", isSidebarOpen ? "translate-x-0" : "-translate-x-full")} />
+      <div className="flex-1">
+        <Button onClick={toggleSidebar} className="md:hidden">
+          {/* Adjust this according to the icon you use */}
+          <span className="text-2xl">☰</span> 
+        </Button>
+        {children}
+      </div>
+    </div>
+  );
+}
+Update the Page Layout: Modify your page layout files, such as layout.tsx, to wrap your components with the MainLayout.
+Modify layout.tsx
+Edit next-frontend/src/app/layout.tsx to incorporate MainLayout:
+
+import { Inter } from 'next/font/google';
+import { Toaster } from 'sonner';
+import { AuthProvider } from '@/contexts/auth-context';
+import MainLayout from '@/components/MainLayout'; // Import MainLayout
+import './globals.css';
+const inter = Inter({ subsets: ['latin'] });
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <AuthProvider>
+          <MainLayout>
+            {children}
+          </MainLayout>
+        </AuthProvider>
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+Deleting the Mobile Nav: Finally, once you've verified that the sidebar is working as intended, you can go ahead and delete the mobile-nav.tsx file.
+Implementation Prompt
+Now that you have the structure and code needed to create a persistent left sidebar with toggle functionality, please implement this refactoring in your codebase. Let me know if you encounter any issues or have further questions!
