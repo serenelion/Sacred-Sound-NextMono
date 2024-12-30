@@ -72,8 +72,6 @@ export function LibraryPage() {
           </SwipeComponent>
         </section>
       </main>
-      
-      <MobileNav />
     </div>
   )
 }
