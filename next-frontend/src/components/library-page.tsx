@@ -39,11 +39,11 @@ export function LibraryPage() {
 
   return (
     <div className="flex h-screen">
-      <div className="hidden md:block">
+      <div className="hidden md:block w-64"> {/* Added width for sidebar */}
         <Sidebar />
       </div>
       
-      <main className="flex-1 p-6 pb-24 md:pb-6 overflow-y-auto">
+      <main className="flex-1 p-6 pb-24 md:pb-6 overflow-y-auto"> {/*flex-1 ensures it takes remaining space*/}
         <section className="mb-8">
           <SwipeComponent title="New Releases">
             {newReleases.map((item) => (

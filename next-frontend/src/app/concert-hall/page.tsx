@@ -11,7 +11,7 @@ export default function ConcertHall() {
   const [activeTab, setActiveTab] = useState('upcoming')
   
   return (
-    <div className="container mx-auto px-4 pb-20">
+    <div className="w-full pb-20">
       <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black mb-8">
         <video
           src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
