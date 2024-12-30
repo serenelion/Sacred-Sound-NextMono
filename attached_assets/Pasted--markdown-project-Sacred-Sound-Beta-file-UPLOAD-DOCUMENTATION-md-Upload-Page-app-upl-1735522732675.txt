@@ -1,0 +1,357 @@
+```markdown project="Sacred Sound Beta" file="UPLOAD-DOCUMENTATION.md"
+...
+```
+
+Upload Page (app/upload/page.tsx)
+├── UploadChoice
+│   └── ContentUpload
+│       ├── TechnicalRequirements
+│       ├── ContentList
+│       │   └── DragDropContext (react-beautiful-dnd)
+│       ├── QAProcess
+│       └── TrackDetailsStep
+│           ├── CoverImageUpload
+│           └── MetadataForm
+
+```plaintext
+
+## Component Details
+
+### Upload Page (`app/upload/page.tsx`)
+- Entry container component
+- Manages layout and basic page structure
+- Props: `uploadType?: boolean`
+
+### UploadChoice (`components/upload/upload-choice.tsx`)
+- Initial interface for selecting upload type
+- State: `uploadType: 'album' | 'individual' | null`
+- Renders either album or individual upload flow
+
+### ContentUpload (`components/upload/content-upload.tsx`)
+- Main upload orchestrator
+- Props:
+  ```typescript
+  interface ContentUploadProps {
+    uploadType: 'album' | 'individual'
+    onBack: () => void
+  }
+```
+
+- State Management:
+
+```typescript
+interface UploadState {
+  albumDetails: {
+    title: string
+    description: string
+    releaseDate: string
+  }
+  files: UploadedFile[]
+  error: string | null
+  step: 'upload' | 'details'
+}
+```
+
+
+
+
+### TrackDetailsStep (`components/upload/track-details-step.tsx`)
+
+- Handles metadata collection for each track
+- Props:
+
+```typescript
+interface TrackDetailsStepProps {
+  files: UploadedFile[]
+  albumId: string | null
+  onBack: () => void
+}
+```
+
+
+
+
+## Metadata Requirements
+
+### Track Metadata Fields
+
+#### Basic Information
+
+```typescript
+interface BasicMetadata {
+  title: string           // Required, max 100 chars
+  description: string     // Required, max 500 chars
+  category: string        // Required, single selection
+}
+```
+
+#### Technical Details
+
+```typescript
+interface TechnicalMetadata {
+  genre: string[]        // Required, multiple selection
+  featuredInstruments: string[]  // Optional, multiple selection
+  primaryInstrument: string      // Required if instrumental
+}
+```
+
+#### Cultural Context
+
+```typescript
+interface CulturalMetadata {
+  language: string[]     // Required, multiple selection
+  deity: string[]        // Optional, multiple selection
+  tradition: string[]    // Required, multiple selection
+}
+```
+
+#### Performance Details
+
+```typescript
+interface PerformanceMetadata {
+  vocals: 'yes' | 'no'
+  vocalTypes: {
+    instrumental: boolean
+    male: boolean
+    female: boolean
+    choir: boolean
+    circle: boolean
+  }
+}
+```
+
+### Metadata Options
+
+#### Categories
+
+- Studio Production
+- Music Video
+- Meditation
+- DJ Set
+- Behind the Scenes
+- Concert
+- Live Recording
+- Video Lesson
+
+
+#### Genres
+
+- Kirtan
+- Bhajan
+- Mantra
+- Devotional
+
+
+#### Instruments
+
+- Harmonium
+- Tabla
+- Mridanga
+- Tampura
+
+
+#### Languages
+
+- Sanskrit
+- Hindi
+- Bengali
+- English
+
+
+#### Deities
+
+- Krishna
+- Rama
+- Shiva
+- Durga
+
+
+#### Traditions
+
+- Vaishnava
+- Shaivite
+- Shakta
+- Vedic
+
+
+## Technical Requirements
+
+### Supported File Formats
+
+- Audio:
+
+- WAV (16-bit/44.1kHz minimum)
+- FLAC
+- AIFF
+
+
+
+- Video:
+
+- MP4 (H.264 codec)
+- Minimum 1080p resolution
+- Recommended: 4K
+
+
+
+
+
+### File Size Limits
+
+- Audio: Maximum 500MB per file
+- Video: Maximum 2GB per file
+- Cover Images: Maximum 5MB, minimum 1400x1400px
+
+
+### Upload Process Flow
+
+1. File Selection
+
+1. Drag & drop support
+2. Multiple file selection
+3. Format validation
+4. Size validation
+
+
+
+2. Initial Processing
+
+1. Generate unique ID
+2. Create placeholder metadata
+3. Initialize upload tracking
+
+
+
+3. File Upload
+
+1. Chunked upload to Google Cloud Storage
+2. Progress tracking
+3. Pause/resume support
+4. Error handling
+
+
+
+4. Metadata Collection
+
+1. Basic information
+2. Technical details
+3. Cultural context
+4. Performance details
+
+
+
+5. Cover Image Upload
+
+1. Image optimization
+2. Thumbnail generation
+3. Multiple resolution support
+
+
+
+6. Quality Assurance
+
+1. Technical review
+2. Content curation
+3. Metadata verification
+
+
+
+
+
+## State Management
+
+### Upload Context
+
+```typescript
+interface UploadContext {
+  files: UploadedFile[]
+  currentStep: number
+  progress: Record<string, number>
+  errors: Record<string, string>
+  metadata: Record<string, TrackMetadata>
+}
+```
+
+### File Status Tracking
+
+```typescript
+interface UploadedFile {
+  id: string
+  file: File
+  progress: number
+  status: 'pending' | 'uploading' | 'processing' | 'complete' | 'error'
+  error?: string
+}
+```
+
+## Error Handling
+
+### Upload Errors
+
+- File size exceeded
+- Invalid format
+- Network failure
+- Storage quota exceeded
+- Duplicate content
+
+
+### Metadata Validation
+
+- Required fields missing
+- Invalid format
+- Duplicate titles
+- Invalid character usage
+
+
+## Security Considerations
+
+### File Validation
+
+- Content type verification
+- File signature checking
+- Malware scanning
+- Maximum file size enforcement
+
+
+### Upload Security
+
+- Signed URLs
+- Temporary credentials
+- Rate limiting
+- Upload quota enforcement
+
+
+## API Integration
+
+### Endpoints
+
+```typescript
+interface UploadAPI {
+  '/api/upload/initiate': POST
+  '/api/upload/complete': POST
+  '/api/metadata/create': POST
+  '/api/metadata/update': PATCH
+  '/api/cover-image/upload': POST
+}
+```
+
+### Response Handling
+
+```typescript
+interface APIResponse {
+  success: boolean
+  data?: any
+  error?: {
+    code: string
+    message: string
+    details?: any
+  }
+}
+```
+
+This documentation provides a comprehensive overview of the upload system implementation. For specific implementation details, refer to the individual component files and API documentation.
+
+```plaintext
+
+Would you like me to expand on any particular section or create additional technical documentation for specific components?
+```
