@@ -1,30 +1,17 @@
 
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
-  try {
-    const formData = await req.formData();
-    const files = formData.getAll('files') as File[];
-    const type = formData.get('type') as string;
-    const details = formData.get('details') as string;
+  const formData = await req.formData()
+  const file = formData.get('file') as File
+  const type = formData.get('type') as 'album' | 'individual'
+  
+  // Call backend API
+  const response = await fetch(`${process.env.API_URL}/api/upload/video`, {
+    method: 'POST',
+    body: formData
+  })
 
-    // Mock successful upload response
-    const uploadedFiles = files.map((file, index) => ({
-      id: `file-${index}`,
-      name: file.name,
-      url: URL.createObjectURL(file)
-    }));
-
-    return NextResponse.json({ 
-      success: true,
-      files: uploadedFiles,
-      type,
-      details: JSON.parse(details)
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Upload failed' },
-      { status: 500 }
-    );
-  }
+  const data = await response.json()
+  return NextResponse.json(data)
 }
